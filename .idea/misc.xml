@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/Chris/Desktop/N/NewMinds/app/src/main/res/drawable/button_task_check.xml" value="0.114" />
+        <entry key="..\:/Users/Chris/Desktop/N/NewMinds/app/src/main/res/layout/activity_lesson_completed.xml" value="0.10260416666666666" />
+        <entry key="..\:/Users/Chris/Desktop/N/NewMinds/app/src/main/res/layout/activity_lesson_list.xml" value="0.19947916666666668" />
+        <entry key="..\:/Users/Chris/Desktop/N/NewMinds/app/src/main/res/layout/activity_word_task.xml" value="0.17083333333333334" />
+        <entry key="..\:/Users/Chris/Desktop/N/NewMinds/app/src/main/res/menu/menu_main.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/Chris/Desktop/NewMinds/app/src/main/res/layout/activity_lesson_completed.xml" value="0.176" />
+        <entry key="..\:/Users/Chris/Desktop/NewMinds/app/src/main/res/layout/activity_lesson_list.xml" value="0.17083333333333334" />
+        <entry key="..\:/Users/Chris/Desktop/NewMinds/app/src/main/res/layout/activity_pick_daily_goal.xml" value="0.17083333333333334" />
+        <entry key="..\:/Users/Chris/Desktop/NewMinds/app/src/main/res/layout/activity_select_course.xml" value="0.17083333333333334" />
+        <entry key="..\:/Users/Chris/Desktop/NewMinds/app/src/main/res/layout/activity_sign_in.xml" value="0.17083333333333334" />
+        <entry key="..\:/Users/Chris/Desktop/NewMinds/app/src/main/res/layout/activity_tap_pair.xml" value="0.17083333333333334" />
+        <entry key="..\:/Users/Chris/Desktop/NewMinds/app/src/main/res/layout/activity_welcome.xml" value="0.17083333333333334" />
+        <entry key="..\:/Users/Chris/Desktop/NewMinds/app/src/main/res/layout/activity_word_task.xml" value="0.17083333333333334" />
+        <entry key="..\:/Users/Chris/Desktop/NewMinds/app/src/main/res/layout/select_course_item.xml" value="0.17083333333333334" />
+        <entry key="..\:/Users/Chris/Desktop/NewMinds/app/src/main/res/layout/task_default_body.xml" value="0.17083333333333334" />
+        <entry key="..\:/Users/Chris/Desktop/NewMinds/app/src/main/res/layout/tasks_progress_bar.xml" value="0.17083333333333334" />
+        <entry key="..\:/Users/Chris/Desktop/NewMinds/app/src/main/res/layout/week_progress_bar.xml" value="0.17083333333333334" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
