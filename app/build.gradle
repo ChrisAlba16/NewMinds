@@ -31,10 +31,12 @@ android {
     }
     buildFeatures {
         viewBinding true
+        dataBinding true
     }
 }
 
 dependencies {
+    implementation 'mysql:mysql-connector-java:5.1.49'
     implementation 'com.afollestad.material-dialogs:core:3.3.0'
     implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'androidx.appcompat:appcompat:1.6.0'
