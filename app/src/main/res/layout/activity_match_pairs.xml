@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="54dp"
+        android:layout_height="47dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.044"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.035"
+        app:srcCompat="@drawable/ic_task_close" />
+
+    <ProgressBar
+        android:id="@+id/progressBar4"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="80dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/progressBar"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="63dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.324"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/progressBar5"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="72dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/progressBar4"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="304dp"
+        android:layout_height="57dp"
+        android:text="Tap the matching pairs"
+        android:gravity = "center"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.197"
+        app:textAllCaps="false" />
+
+    <LinearLayout
+        android:layout_width="144dp"
+        android:layout_height="280dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.119"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:layout_constraintVertical_bias="0.403">
+
+        <Button
+            android:id="@+id/Columna_Izq_B1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/Columna_Izq_B2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="She"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/Columna_Izq_B3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="They"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/Columna_Izq_B4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="He"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/Columna_Izq_B5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="I"
+            android:textAllCaps="false" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="154dp"
+        android:layout_height="280dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.795"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:layout_constraintVertical_bias="0.409">
+
+        <Button
+            android:id="@+id/Columna_Der_B1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Yo"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/Columna_Der_B2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="El"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/Columna_Der_B3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ellos"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/Columna_Der_B4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hola"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/Columna_Der_B5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ella"
+            android:textAllCaps="false" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="156dp"
+        android:layout_height="123dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.033"
+        app:srcCompat="@drawable/mascota" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
