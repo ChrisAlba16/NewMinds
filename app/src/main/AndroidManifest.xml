@@ -23,6 +23,7 @@
         </activity>
         <activity android:name=".ui.Login" />
         <activity android:name=".ui.LessonList" />
+        <activity android:name=".ui.MatchPairs" />
     </application>
 
 </manifest>
