@@ -24,6 +24,7 @@
         <activity android:name=".ui.Login" />
         <activity android:name=".ui.LessonList" />
         <activity android:name=".ui.MatchPairs" />
+        <activity android:name=".ui.MultipleChoiceUI" />
     </application>
 
 </manifest>

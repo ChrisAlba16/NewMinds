@@ -30,31 +30,13 @@
         android:layout_below="@id/toolbar">
 
         <LinearLayout
+            android:id="@+id/lienzo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    >
 
-                    <ProgressBar
-                        android:id="@+id/uno"
-                        android:layout_width="125dp"
-                        android:layout_height="125dp"
-                        android:layout_centerInParent="true"
-                        android:progressDrawable="@drawable/progress"
-                        tools:progress="0" />
-
-                    <TextView
-                        style="@style/lesson_bar_text"
-                        android:layout_below="@id/uno"
-                        android:layout_centerHorizontal="true"
-                        android:text="Basics" />
-
-                </RelativeLayout>
 
 
 

@@ -28,9 +28,9 @@ data class Parejas(
 )
 
 object Requests {
-    private const val url = "jdbc:mysql://sql9.freemysqlhosting.net:3306/sql9596858"
-    private const val user = "sql9596858"
-    private const val password = "2W9hZKMPNa"
+    private const val url = "jdbc:mysql://sql.freedb.tech:3306/freedb_newminds"
+    private const val user = "freedb_newminds"
+    private const val password = "4ZJ7JuGNjY4TG&z"
 
     fun login(matricula: Int, contra: String): MutableList<User> {
         val users = mutableListOf<User>()
