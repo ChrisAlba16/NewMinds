@@ -1,6 +1,9 @@
 package com.example.newminds.utils
 
+import android.os.Parcel
+import android.os.Parcelable
 import android.util.Log
+import kotlinx.parcelize.Parcelize
 import java.sql.DriverManager
 import java.sql.PreparedStatement
 import java.sql.ResultSet
@@ -8,6 +11,7 @@ import java.sql.ResultSet
 data class User(val id: Int, val nombre: String, val contra: String)
 data class Mapa(val nombreUnidad: String, val nombreTema: String)
 data class Progreso(val idTema: Int, val numero_actividad: Int)
+@Parcelize
 data class MultipleChoice(
     val id: Int,
     val idTema: Int,
@@ -17,29 +21,117 @@ data class MultipleChoice(
     val respuesta: String,
     val video: String,
     val numeroActividad: Int
-)
+) : Parcelable {
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeInt(id)
+        parcel.writeInt(idTema)
+        parcel.writeString(texto)
+        parcel.writeStringArray(options)
+        parcel.writeString(url)
+        parcel.writeString(respuesta)
+        parcel.writeString(video)
+        parcel.writeInt(numeroActividad)
+    }
+    override fun describeContents(): Int {
+        return 0
+    }
+    companion object CREATOR : Parcelable.Creator<MultipleChoice> {
+        override fun createFromParcel(parcel: Parcel): MultipleChoice {
+            return MultipleChoice(
+                parcel.readInt(),
+                parcel.readInt(),
+                parcel.readString() ?: "",
+                parcel.createStringArray() ?: emptyArray(),
+                parcel.readString() ?: "",
+                parcel.readString() ?: "",
+                parcel.readString() ?: "",
+                parcel.readInt()
+            )
+        }
+        override fun newArray(size: Int): Array<MultipleChoice?> {
+            return arrayOfNulls(size)
+        }
+    }
+}
 
+@Parcelize
 data class FlashCards(
     val id: Int,
     val idTema: Int,
+    val pregunta: String,
     val flashCard: Array<Array<String>>,
     val respuesta: String,
     val video: String,
     val numeroActividad: Int
-)
+): Parcelable {
+    override fun describeContents(): Int = 0
 
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeInt(id)
+        parcel.writeInt(idTema)
+        parcel.writeString(pregunta)
+        parcel.writeArray(flashCard)
+        parcel.writeString(respuesta)
+        parcel.writeString(video)
+        parcel.writeInt(numeroActividad)
+    }
+    companion object CREATOR : Parcelable.Creator<FlashCards> {
+        override fun createFromParcel(parcel: Parcel): FlashCards {
+            return FlashCards(
+                parcel.readInt(),
+                parcel.readInt(),
+                parcel.readString() ?: "",
+                parcel.readArray(Array<String>::class.java.classLoader) as Array<Array<String>>,
+                parcel.readString() ?: "",
+                parcel.readString() ?: "",
+                parcel.readInt()
+            )
+        }
+        override fun newArray(size: Int): Array<FlashCards?> {
+            return arrayOfNulls(size)
+        }
+    }
+}
+
+@Parcelize
 data class Pairs(
     val id: Int,
     val idTema: Int,
     val pairs: Array<Array<String>>,
     val video: String,
     val numeroActividad: Int
-)
+) : Parcelable {
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeInt(id)
+        parcel.writeInt(idTema)
+        parcel.writeArray(pairs)
+        parcel.writeString(video)
+        parcel.writeInt(numeroActividad)
+    }
+
+    override fun describeContents() = 0
+
+    companion object CREATOR : Parcelable.Creator<Pairs> {
+        override fun createFromParcel(parcel: Parcel): Pairs {
+            return Pairs(
+                parcel.readInt(),
+                parcel.readInt(),
+                parcel.readArray(Array<Array<String>>::class.java.classLoader) as Array<Array<String>>,
+                parcel.readString() ?: "",
+                parcel.readInt()
+            )
+        }
+
+        override fun newArray(size: Int): Array<Pairs?> {
+            return arrayOfNulls(size)
+        }
+    }
+}
 
 object Requests {
     private const val url = "jdbc:mysql://sql.freedb.tech:3306/freedb_newminds"
     private const val user = "freedb_newminds"
-    private const val password = "4ZJ7uGNjY4TG&z"
+    private const val password = "4ZJ7JuGNjY4TG&z"
 
     fun login(matricula: Int, contra: String): MutableList<User> {
         val users = mutableListOf<User>()
@@ -117,6 +209,7 @@ object Requests {
                 while (resultSet.next()) {
                     val id = resultSet.getInt("id")
                     val idTema = resultSet.getInt("id_tema")
+                    val pregunta = resultSet.getString("pregunta")
                     val flashCards = arrayOf(
                         arrayOf<String>(
                             resultSet.getString("texto1"),
@@ -143,6 +236,7 @@ object Requests {
                         FlashCards(
                             id,
                             idTema,
+                            pregunta,
                             flashCards,
                             respuesta,
                             video,
