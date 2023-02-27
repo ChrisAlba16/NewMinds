@@ -32,18 +32,23 @@ class LessonList : AppCompatActivity() {
             val mapa = async { Requests.mapa(1) }
             if (mapa.await().size != 0) {
                 var previousValue: String? = null
-                for ((index,dato) in mapa.await().iterator().withIndex()) {
+                for ((index, dato) in mapa.await().iterator().withIndex()) {
                     if (previousValue == null || previousValue != dato.nombreUnidad) {
                         runOnUiThread {
                             val inflater = LayoutInflater.from(this@LessonList)
                             val subLayoutBinding =
                                 UnidadBinding.inflate(inflater, binding.lienzo, true)
-                            subLayoutBinding.titulo.setText("Unidad ${index+1}")
+                            subLayoutBinding.titulo.setText("Unidad ${index + 1}")
                             subLayoutBinding.subtitulo.setText(dato.nombreUnidad)
                             val infla = LayoutInflater.from(this@LessonList)
                             val sub = TemaBinding.inflate(infla, binding.lienzo, true)
                             sub.progreso.progress = 33
                             sub.myButton.setOnClickListener {
+                                val intent = Intent(this@LessonList, HandlerActivity::class.java)
+                                intent.putExtra("idEstudiante", 1)
+                                intent.putExtra("idMateria", 1)
+                                startActivity(intent)
+
 
                             }
                         }

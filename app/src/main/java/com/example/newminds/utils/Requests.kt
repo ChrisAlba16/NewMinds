@@ -3,6 +3,7 @@ package com.example.newminds.utils
 import android.os.Parcel
 import android.os.Parcelable
 import android.util.Log
+import kotlinx.parcelize.Parceler
 import kotlinx.parcelize.Parcelize
 import java.sql.DriverManager
 import java.sql.PreparedStatement
@@ -22,21 +23,19 @@ data class MultipleChoice(
     val video: String,
     val numeroActividad: Int
 ) : Parcelable {
-    override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeInt(id)
-        parcel.writeInt(idTema)
-        parcel.writeString(texto)
-        parcel.writeStringArray(options)
-        parcel.writeString(url)
-        parcel.writeString(respuesta)
-        parcel.writeString(video)
-        parcel.writeInt(numeroActividad)
-    }
-    override fun describeContents(): Int {
-        return 0
-    }
-    companion object CREATOR : Parcelable.Creator<MultipleChoice> {
-        override fun createFromParcel(parcel: Parcel): MultipleChoice {
+    companion object : Parceler<MultipleChoice> {
+        override fun MultipleChoice.write(parcel: Parcel, flags: Int) {
+            parcel.writeInt(id)
+            parcel.writeInt(idTema)
+            parcel.writeString(texto)
+            parcel.writeStringArray(options)
+            parcel.writeString(url)
+            parcel.writeString(respuesta)
+            parcel.writeString(video)
+            parcel.writeInt(numeroActividad)
+        }
+
+        override fun create(parcel: Parcel): MultipleChoice {
             return MultipleChoice(
                 parcel.readInt(),
                 parcel.readInt(),
@@ -47,9 +46,6 @@ data class MultipleChoice(
                 parcel.readString() ?: "",
                 parcel.readInt()
             )
-        }
-        override fun newArray(size: Int): Array<MultipleChoice?> {
-            return arrayOfNulls(size)
         }
     }
 }
@@ -66,17 +62,18 @@ data class FlashCards(
 ): Parcelable {
     override fun describeContents(): Int = 0
 
-    override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeInt(id)
-        parcel.writeInt(idTema)
-        parcel.writeString(pregunta)
-        parcel.writeArray(flashCard)
-        parcel.writeString(respuesta)
-        parcel.writeString(video)
-        parcel.writeInt(numeroActividad)
-    }
-    companion object CREATOR : Parcelable.Creator<FlashCards> {
-        override fun createFromParcel(parcel: Parcel): FlashCards {
+    companion object : Parceler<FlashCards> {
+        override fun FlashCards.write(parcel: Parcel, flags: Int) {
+            parcel.writeInt(id)
+            parcel.writeInt(idTema)
+            parcel.writeString(pregunta)
+            parcel.writeArray(flashCard)
+            parcel.writeString(respuesta)
+            parcel.writeString(video)
+            parcel.writeInt(numeroActividad)
+        }
+
+        override fun create(parcel: Parcel): FlashCards {
             return FlashCards(
                 parcel.readInt(),
                 parcel.readInt(),
@@ -86,9 +83,6 @@ data class FlashCards(
                 parcel.readString() ?: "",
                 parcel.readInt()
             )
-        }
-        override fun newArray(size: Int): Array<FlashCards?> {
-            return arrayOfNulls(size)
         }
     }
 }
@@ -101,18 +95,20 @@ data class Pairs(
     val video: String,
     val numeroActividad: Int
 ) : Parcelable {
-    override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeInt(id)
-        parcel.writeInt(idTema)
-        parcel.writeArray(pairs)
-        parcel.writeString(video)
-        parcel.writeInt(numeroActividad)
-    }
 
     override fun describeContents() = 0
 
-    companion object CREATOR : Parcelable.Creator<Pairs> {
-        override fun createFromParcel(parcel: Parcel): Pairs {
+    companion object : Parceler<Pairs> {
+
+        override fun Pairs.write(parcel: Parcel, flags: Int) {
+            parcel.writeInt(id)
+            parcel.writeInt(idTema)
+            parcel.writeArray(pairs)
+            parcel.writeString(video)
+            parcel.writeInt(numeroActividad)
+        }
+
+        override fun create(parcel: Parcel): Pairs {
             return Pairs(
                 parcel.readInt(),
                 parcel.readInt(),
@@ -120,10 +116,6 @@ data class Pairs(
                 parcel.readString() ?: "",
                 parcel.readInt()
             )
-        }
-
-        override fun newArray(size: Int): Array<Pairs?> {
-            return arrayOfNulls(size)
         }
     }
 }

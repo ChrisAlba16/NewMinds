@@ -26,6 +26,7 @@
         <activity android:name=".ui.MatchPairs" />
         <activity android:name=".ui.MultipleChoiceUI" />
         <activity android:name=".ui.Flashcard" />
+        <activity android:name=".ui.HandlerActivity" />
     </application>
 
 </manifest>
