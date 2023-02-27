@@ -13,10 +13,17 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.newminds.databinding.ActivityMatchPairsBinding
 import com.example.newminds.utils.Pairs
+data class m(
+    val id: Int,
+    val idTema: Int,
+    val pairs: Array<Array<String>>,
+    val video: String,
+    val numeroActividad: Int
+)
 
 class MatchPairs : AppCompatActivity() {
     private lateinit var binding: ActivityMatchPairsBinding
-    private lateinit var pregunta: Pairs
+    private lateinit var pregunta: m
     private var contador = 0
     private var b1 = ""
     private var b2 = ""
@@ -26,7 +33,9 @@ class MatchPairs : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMatchPairsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        intent.getParcelableExtra<Pairs>("pregunta")
+        val p = intent.getParcelableExtra<Pairs>("pregunta")!!
+        val pair = arrayOf(arrayOf(p.parejas[0], p.respuestas[0]),arrayOf(p.parejas[1], p.respuestas[1]),arrayOf(p.parejas[2], p.respuestas[2]),arrayOf(p.parejas[3], p.respuestas[3]))
+        pregunta = m(p.id, p.idTema, pair, p.video, p.numeroActividad)
         if(pregunta.video == "" || pregunta.video == null){
             binding.duda.visibility = View.INVISIBLE
         }
@@ -47,6 +56,7 @@ class MatchPairs : AppCompatActivity() {
             if(b1 != ""){
                 b2 = binding.leftOne.text.toString()
                 buttonClicked2 = binding.leftOne.id
+                val mensaje = Toast.makeText(binding.root.context,b2,Toast.LENGTH_LONG).show()
                 if(checkCorrecto(b1,b2,pregunta.pairs)){
                     val btn1 = findViewById<Button>(buttonClicked1)
                     val btn2 = findViewById<Button>(buttonClicked2)
@@ -63,6 +73,7 @@ class MatchPairs : AppCompatActivity() {
             else{
                 b1 = binding.leftOne.text.toString()
                 buttonClicked1 = binding.leftOne.id
+                val mensaje = Toast.makeText(binding.root.context,b1,Toast.LENGTH_LONG).show()
             }
         }
 
@@ -71,6 +82,7 @@ class MatchPairs : AppCompatActivity() {
             if(b1 != ""){
                 b2 = binding.leftTwo.text.toString()
                 buttonClicked2 = binding.leftOne.id
+                val mensaje = Toast.makeText(binding.root.context,b2,Toast.LENGTH_LONG).show()
                 if(checkCorrecto(b1,b2,pregunta.pairs)){
                     val btn1 = findViewById<Button>(buttonClicked1)
                     val btn2 = findViewById<Button>(buttonClicked2)
@@ -87,6 +99,7 @@ class MatchPairs : AppCompatActivity() {
             else{
                 b1 = binding.leftTwo.text.toString()
                 buttonClicked1 = binding.leftOne.id
+                val mensaje = Toast.makeText(binding.root.context,b1,Toast.LENGTH_LONG).show()
             }
         }
 
@@ -95,6 +108,7 @@ class MatchPairs : AppCompatActivity() {
             if(b1 != ""){
                 b2 = binding.rightOne.text.toString()
                 buttonClicked2 = binding.leftOne.id
+                val mensaje = Toast.makeText(binding.root.context,b2,Toast.LENGTH_LONG).show()
                 if(checkCorrecto(b1,b2,pregunta.pairs)){
                     val btn1 = findViewById<Button>(buttonClicked1)
                     val btn2 = findViewById<Button>(buttonClicked2)
@@ -111,6 +125,7 @@ class MatchPairs : AppCompatActivity() {
             else{
                 b1 = binding.rightOne.text.toString()
                 buttonClicked1 = binding.leftOne.id
+                val mensaje = Toast.makeText(binding.root.context,b1,Toast.LENGTH_LONG).show()
             }
         }
 
@@ -119,6 +134,7 @@ class MatchPairs : AppCompatActivity() {
             if(b1 != ""){
                 b2 = binding.rightTwo.text.toString()
                 buttonClicked2 = binding.leftOne.id
+                val mensaje = Toast.makeText(binding.root.context,b2,Toast.LENGTH_LONG).show()
                 if(checkCorrecto(b1,b2,pregunta.pairs)){
                     val btn1 = findViewById<Button>(buttonClicked1)
                     val btn2 = findViewById<Button>(buttonClicked2)
@@ -135,6 +151,7 @@ class MatchPairs : AppCompatActivity() {
             else{
                 b1 = binding.rightTwo.text.toString()
                 buttonClicked1 = binding.leftOne.id
+                val mensaje = Toast.makeText(binding.root.context,b1,Toast.LENGTH_LONG).show()
             }
         }
     }
@@ -164,11 +181,11 @@ class MatchPairs : AppCompatActivity() {
         val transitionDrawable = TransitionDrawable(colorDrawables)
         binding.fondo.background = transitionDrawable
         val mensaje = Toast.makeText(binding.root.context,"¡Muy bien hecho!", Toast.LENGTH_LONG).show()
-        transitionDrawable.startTransition(5000)
+        transitionDrawable.startTransition(2500)
         val handler = Handler()
         handler.postDelayed({
             finish()
-        }, 5000)
+        }, 2500)
     }
     private fun equivocado(){
         val colorDrawables = arrayOf(

@@ -1,7 +1,6 @@
 package com.example.newminds.ui
 
-import android.animation.ArgbEvaluator
-import android.animation.ValueAnimator
+
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -14,17 +13,16 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.newminds.databinding.ActivityMultiplechoiceBinding
 import com.example.newminds.utils.MultipleChoice
-import com.example.newminds.utils.Requests
-import java.net.URI
+
 
 class MultipleChoiceUI:AppCompatActivity() {
     private lateinit var binding: ActivityMultiplechoiceBinding
     private lateinit var pregunta: MultipleChoice
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
-        binding = com.example.newminds.databinding.ActivityMultiplechoiceBinding.inflate(layoutInflater)
+        binding = ActivityMultiplechoiceBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        intent.getParcelableExtra<MultipleChoice>("pregunta")
+        pregunta = intent.getParcelableExtra<MultipleChoice>("pregunta")!!
         if(pregunta.video == "" || pregunta.video == null){
             binding.duda.visibility = View.INVISIBLE
         }
@@ -72,11 +70,11 @@ class MultipleChoiceUI:AppCompatActivity() {
         val transitionDrawable = TransitionDrawable(colorDrawables)
         binding.fondo.background = transitionDrawable
         val mensaje = Toast.makeText(binding.root.context,"¡Muy bien hecho!",Toast.LENGTH_LONG).show()
-        transitionDrawable.startTransition(5000)
+        transitionDrawable.startTransition(2500)
         val handler = Handler()
         handler.postDelayed({
             finish()
-        }, 5000)
+        }, 2500)
     }
     private fun equivocado(){
         val colorDrawables = arrayOf(ColorDrawable(Color.parseColor("#7f0000")),ColorDrawable(Color.WHITE))

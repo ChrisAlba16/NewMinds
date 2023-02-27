@@ -12,6 +12,7 @@ import java.sql.ResultSet
 data class User(val id: Int, val nombre: String, val contra: String)
 data class Mapa(val nombreUnidad: String, val nombreTema: String)
 data class Progreso(val idTema: Int, val numero_actividad: Int)
+
 @Parcelize
 data class MultipleChoice(
     val id: Int,
@@ -55,11 +56,12 @@ data class FlashCards(
     val id: Int,
     val idTema: Int,
     val pregunta: String,
-    val flashCard: Array<Array<String>>,
+    val textos: Array<String?>,
+    val urls: Array<String?>,
     val respuesta: String,
     val video: String,
     val numeroActividad: Int
-): Parcelable {
+) : Parcelable {
     override fun describeContents(): Int = 0
 
     companion object : Parceler<FlashCards> {
@@ -67,7 +69,8 @@ data class FlashCards(
             parcel.writeInt(id)
             parcel.writeInt(idTema)
             parcel.writeString(pregunta)
-            parcel.writeArray(flashCard)
+            parcel.writeStringArray(textos)
+            parcel.writeStringArray(urls)
             parcel.writeString(respuesta)
             parcel.writeString(video)
             parcel.writeInt(numeroActividad)
@@ -78,7 +81,8 @@ data class FlashCards(
                 parcel.readInt(),
                 parcel.readInt(),
                 parcel.readString() ?: "",
-                parcel.readArray(Array<String>::class.java.classLoader) as Array<Array<String>>,
+                parcel.createStringArray() ?: emptyArray(),
+                parcel.createStringArray() ?: emptyArray(),
                 parcel.readString() ?: "",
                 parcel.readString() ?: "",
                 parcel.readInt()
@@ -91,7 +95,8 @@ data class FlashCards(
 data class Pairs(
     val id: Int,
     val idTema: Int,
-    val pairs: Array<Array<String>>,
+    val parejas: Array<String>,
+    val respuestas: Array<String>,
     val video: String,
     val numeroActividad: Int
 ) : Parcelable {
@@ -103,7 +108,8 @@ data class Pairs(
         override fun Pairs.write(parcel: Parcel, flags: Int) {
             parcel.writeInt(id)
             parcel.writeInt(idTema)
-            parcel.writeArray(pairs)
+            parcel.writeStringArray(parejas)
+            parcel.writeStringArray(respuestas)
             parcel.writeString(video)
             parcel.writeInt(numeroActividad)
         }
@@ -112,7 +118,8 @@ data class Pairs(
             return Pairs(
                 parcel.readInt(),
                 parcel.readInt(),
-                parcel.readArray(Array<Array<String>>::class.java.classLoader) as Array<Array<String>>,
+                parcel.createStringArray() ?: emptyArray(),
+                parcel.createStringArray() ?: emptyArray(),
                 parcel.readString() ?: "",
                 parcel.readInt()
             )
@@ -202,24 +209,21 @@ object Requests {
                     val id = resultSet.getInt("id")
                     val idTema = resultSet.getInt("id_tema")
                     val pregunta = resultSet.getString("pregunta")
-                    val flashCards = arrayOf(
-                        arrayOf<String>(
-                            resultSet.getString("texto1"),
-                            resultSet.getString("url1")
-                        ),
-                        arrayOf<String>(
-                            resultSet.getString("texto2"),
-                            resultSet.getString("url2")
-                        ),
-                        arrayOf<String>(
-                            resultSet.getString("texto3"),
-                            resultSet.getString("url3")
-                        ),
-                        arrayOf<String>(
-                            resultSet.getString("texto4"),
-                            resultSet.getString("url4")
-                        )
-                    )
+                    val t1 = resultSet.getString("texto1")
+                    val u1 = resultSet.getString("url1")
+
+                    val t2 = resultSet.getString("texto2")
+                    val u2 = resultSet.getString("url2")
+
+                    val t3 = resultSet.getString("texto3")
+                    val u3 = resultSet.getString("url3")
+
+                    val t4 = resultSet.getString("texto4")
+                    val u4 = resultSet.getString("url4")
+
+
+                    val textos = arrayOf(t1, t2, t3, t4)
+                    val urls = arrayOf(u1, u2, u3, u4)
 
                     val respuesta = resultSet.getString("respuesta")
                     val video = resultSet.getString("video")
@@ -229,7 +233,8 @@ object Requests {
                             id,
                             idTema,
                             pregunta,
-                            flashCards,
+                            textos,
+                            urls,
                             respuesta,
                             video,
                             numeroActividad
@@ -254,31 +259,27 @@ object Requests {
                 while (resultSet.next()) {
                     val id = resultSet.getInt("id")
                     val idTema = resultSet.getInt("id_tema")
-                    val pairs = arrayOf(
-                        arrayOf<String>(
-                            resultSet.getString("pareja1"),
-                            resultSet.getString("respuesta1")
-                        ),
-                        arrayOf<String>(
-                            resultSet.getString("pareja2"),
-                            resultSet.getString("respuesta2")
-                        ),
-                        arrayOf<String>(
-                            resultSet.getString("pareja3"),
-                            resultSet.getString("respuesta3")
-                        ),
-                        arrayOf<String>(
-                            resultSet.getString("pareja4"),
-                            resultSet.getString("respuesta4")
-                        )
+                    val parejas = arrayOf(
+                        resultSet.getString("pareja1"),
+                        resultSet.getString("pareja2"),
+                        resultSet.getString("pareja3"),
+                        resultSet.getString("pareja4")
                     )
+                    val respuestas = arrayOf(
+                        resultSet.getString("respuesta1"),
+                        resultSet.getString("respuesta2"),
+                        resultSet.getString("respuesta3"),
+                        resultSet.getString("respuesta4")
+                    )
+
                     val video = resultSet.getString("video")
                     val numeroActividad = resultSet.getInt("numero_actividad")
                     pares.add(
                         Pairs(
                             id,
                             idTema,
-                            pairs,
+                            parejas,
+                            respuestas,
                             video,
                             numeroActividad
                         )
@@ -321,7 +322,7 @@ object Requests {
                 while (resultSet.next()) {
                     val idTema = resultSet.getInt("id_tema")
                     val numeroActividad = resultSet.getInt("numero_actividad")
-                    progreso  = Progreso(idTema, numeroActividad)
+                    progreso = Progreso(idTema, numeroActividad)
                 }
             }
         } catch (e: Exception) {

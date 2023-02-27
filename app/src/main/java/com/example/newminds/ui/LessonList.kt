@@ -48,8 +48,7 @@ class LessonList : AppCompatActivity() {
                                 intent.putExtra("idEstudiante", 1)
                                 intent.putExtra("idMateria", 1)
                                 startActivity(intent)
-
-
+                                finish()
                             }
                         }
                         previousValue = dato.nombreUnidad

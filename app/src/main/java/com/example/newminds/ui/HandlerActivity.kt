@@ -28,6 +28,8 @@ class HandlerActivity() : AppCompatActivity() {
                 multiple = Requests.multipleChoice(1, 1)
                 flash = Requests.flashcards(1, 1)
             }.await()
+            println("Hola")
+            println(flash)
             contador += 1
             val i = Intent(this@HandlerActivity, MultipleChoiceUI::class.java)
             i.putExtra("pregunta", multiple[0])
@@ -38,57 +40,61 @@ class HandlerActivity() : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        when (contador) {
-            1 -> {
-                val i = Intent(this@HandlerActivity, MultipleChoiceUI::class.java)
-                i.putExtra("pregunta", multiple[0])
-                startActivity(i)
+        if(::multiple.isInitialized &&  ::flash.isInitialized && ::match.isInitialized){
+            when (contador) {
+                1 -> {
+                    val i = Intent(this@HandlerActivity, MultipleChoiceUI::class.java)
+                    i.putExtra("pregunta", multiple[0])
+                    startActivity(i)
+                }
+                2 -> {
+                    val i = Intent(this@HandlerActivity, MultipleChoiceUI::class.java)
+                    i.putExtra("pregunta", multiple[1])
+                    startActivity(i)
+                }
+                3 -> {
+                    val i = Intent(this@HandlerActivity, MultipleChoiceUI::class.java)
+                    i.putExtra("pregunta", multiple[2])
+                    startActivity(i)
+                }
+                4 -> {
+                    val i = Intent(this@HandlerActivity, Flashcard::class.java)
+                    i.putExtra("pregunta", flash[0])
+                    startActivity(i)
+                }
+                5 -> {
+                    val i = Intent(this@HandlerActivity, Flashcard::class.java)
+                    i.putExtra("pregunta", flash[1])
+                    startActivity(i)
+                }
+                6 -> {
+                    val i = Intent(this@HandlerActivity, Flashcard::class.java)
+                    i.putExtra("pregunta", flash[2])
+                    startActivity(i)
+                }
+                7 -> {
+                    val i = Intent(this@HandlerActivity, MatchPairs::class.java)
+                    i.putExtra("pregunta", match[0])
+                    startActivity(i)
+                }
+                8 -> {
+                    val i = Intent(this@HandlerActivity, MatchPairs::class.java)
+                    i.putExtra("pregunta", match[1])
+                    startActivity(i)
+                }
+                9 -> {
+                    val i = Intent(this@HandlerActivity, MatchPairs::class.java)
+                    i.putExtra("pregunta", match[2])
+                    startActivity(i)
+                }
+                else -> {
+                    val i = Intent(this@HandlerActivity, LessonList::class.java)
+                    startActivity(i)
+                    finish()
+                }
             }
-            2 -> {
-                val i = Intent(this@HandlerActivity, MultipleChoiceUI::class.java)
-                i.putExtra("pregunta", multiple[1])
-                startActivity(i)
-            }
-            3 -> {
-                val i = Intent(this@HandlerActivity, MultipleChoiceUI::class.java)
-                i.putExtra("pregunta", multiple[2])
-                startActivity(i)
-            }
-            4 -> {
-                val i = Intent(this@HandlerActivity, Flashcard::class.java)
-                i.putExtra("pregunta", flash[0])
-                startActivity(i)
-            }
-            5 -> {
-                val i = Intent(this@HandlerActivity, Flashcard::class.java)
-                i.putExtra("pregunta", flash[1])
-                startActivity(i)
-            }
-            6 -> {
-                val i = Intent(this@HandlerActivity, Flashcard::class.java)
-                i.putExtra("pregunta", flash[2])
-                startActivity(i)
-            }
-            7 -> {
-                val i = Intent(this@HandlerActivity, MatchPairs::class.java)
-                i.putExtra("pregunta", match[0])
-                startActivity(i)
-            }
-            8 -> {
-                val i = Intent(this@HandlerActivity, MatchPairs::class.java)
-                i.putExtra("pregunta", match[1])
-                startActivity(i)
-            }
-            9 -> {
-                val i = Intent(this@HandlerActivity, MatchPairs::class.java)
-                i.putExtra("pregunta", match[2])
-                startActivity(i)
-            }
-            else -> {
-                val i = Intent(this@HandlerActivity, LessonList::class.java)
-                startActivity(i)
-                finish()
-            }
+            contador += 1
         }
+
     }
 }
