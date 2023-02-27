@@ -6,13 +6,13 @@ import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.TransitionDrawable
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.newminds.databinding.ActivityMatchPairsBinding
 import com.example.newminds.utils.Pairs
-import com.example.newminds.utils.Requests
 
 class MatchPairs : AppCompatActivity() {
     private lateinit var binding: ActivityMatchPairsBinding
@@ -26,7 +26,7 @@ class MatchPairs : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMatchPairsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        pregunta = Requests.pairs(1,1)[0]
+        intent.getParcelableExtra<Pairs>("pregunta")
         if(pregunta.video == "" || pregunta.video == null){
             binding.duda.visibility = View.INVISIBLE
         }
@@ -165,6 +165,10 @@ class MatchPairs : AppCompatActivity() {
         binding.fondo.background = transitionDrawable
         val mensaje = Toast.makeText(binding.root.context,"¡Muy bien hecho!", Toast.LENGTH_LONG).show()
         transitionDrawable.startTransition(5000)
+        val handler = Handler()
+        handler.postDelayed({
+            finish()
+        }, 5000)
     }
     private fun equivocado(){
         val colorDrawables = arrayOf(

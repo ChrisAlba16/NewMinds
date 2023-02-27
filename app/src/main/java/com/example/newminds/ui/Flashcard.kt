@@ -6,12 +6,12 @@ import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.TransitionDrawable
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.newminds.databinding.ActivityFlashcardsBinding
 import com.example.newminds.utils.FlashCards
-import com.example.newminds.utils.Requests
 
 class Flashcard:AppCompatActivity() {
     lateinit var binding: ActivityFlashcardsBinding
@@ -20,7 +20,7 @@ class Flashcard:AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityFlashcardsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        pregunta = Requests.flashcards(1,1)[0]
+        intent.getParcelableExtra<FlashCards>("pregunta")
         binding.textView.text = pregunta.pregunta
         if(pregunta.video == "" || pregunta.video == null){
             binding.duda.visibility = View.INVISIBLE
@@ -75,6 +75,10 @@ class Flashcard:AppCompatActivity() {
         binding.fondo.background = transitionDrawable
         val mensaje = Toast.makeText(binding.root.context,"¡Muy bien hecho!", Toast.LENGTH_LONG).show()
         transitionDrawable.startTransition(5000)
+        val handler = Handler()
+        handler.postDelayed({
+            finish()
+        }, 5000)
     }
     private fun equivocado(){
         val colorDrawables = arrayOf(

@@ -3,6 +3,7 @@ pluginManagement {
         gradlePluginPortal()
         google()
         mavenCentral()
+        maven { url "https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-parcelize-compiler" }
     }
 }
 dependencyResolutionManagement {
