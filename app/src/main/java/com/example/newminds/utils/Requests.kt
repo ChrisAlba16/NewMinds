@@ -22,6 +22,7 @@ data class MultipleChoice(
 data class FlashCards(
     val id: Int,
     val idTema: Int,
+    val pregunta: String,
     val flashCard: Array<Array<String>>,
     val respuesta: String,
     val video: String,
@@ -39,7 +40,7 @@ data class Pairs(
 object Requests {
     private const val url = "jdbc:mysql://sql.freedb.tech:3306/freedb_newminds"
     private const val user = "freedb_newminds"
-    private const val password = "4ZJ7uGNjY4TG&z"
+    private const val password = "4ZJ7JuGNjY4TG&z"
 
     fun login(matricula: Int, contra: String): MutableList<User> {
         val users = mutableListOf<User>()
@@ -117,6 +118,7 @@ object Requests {
                 while (resultSet.next()) {
                     val id = resultSet.getInt("id")
                     val idTema = resultSet.getInt("id_tema")
+                    val pregunta = resultSet.getString("pregunta")
                     val flashCards = arrayOf(
                         arrayOf<String>(
                             resultSet.getString("texto1"),
@@ -143,6 +145,7 @@ object Requests {
                         FlashCards(
                             id,
                             idTema,
+                            pregunta,
                             flashCards,
                             respuesta,
                             video,
