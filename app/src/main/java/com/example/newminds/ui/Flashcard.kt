@@ -84,7 +84,7 @@ class Flashcard:AppCompatActivity() {
         )
         val transitionDrawable = TransitionDrawable(colorDrawables)
         binding.fondo.background = transitionDrawable
-        val mensaje = Toast.makeText(binding.root.context,"¡Muy bien hecho!", Toast.LENGTH_LONG).show()
+        val mensaje = Toast.makeText(binding.root.context,"¡Muy bien hecho!", Toast.LENGTH_SHORT).show()
         transitionDrawable.startTransition(2500)
         val handler = Handler()
         handler.postDelayed({
@@ -98,8 +98,7 @@ class Flashcard:AppCompatActivity() {
         )
         val transitionDrawable = TransitionDrawable(colorDrawables)
         binding.fondo.background = transitionDrawable
-        val mensaje = Toast.makeText(binding.root.context,"Parece que esa no es la respuesta, vuelve a intentar",
-            Toast.LENGTH_LONG).show()
+        val mensaje = Toast.makeText(binding.root.context,"Parece que esa no es la respuesta, vuelve a intentar",Toast.LENGTH_SHORT).show()
         transitionDrawable.startTransition(1000)
     }
 }

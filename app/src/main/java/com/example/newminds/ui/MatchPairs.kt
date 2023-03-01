@@ -56,14 +56,13 @@ class MatchPairs : AppCompatActivity() {
             if(b1 != ""){
                 b2 = binding.leftOne.text.toString()
                 buttonClicked2 = binding.leftOne.id
-                val mensaje = Toast.makeText(binding.root.context,b2,Toast.LENGTH_LONG).show()
                 if(checkCorrecto(b1,b2,pregunta.pairs)){
                     val btn1 = findViewById<Button>(buttonClicked1)
                     val btn2 = findViewById<Button>(buttonClicked2)
                     btn1.isClickable = false
                     btn1.setBackgroundColor(Color.parseColor("#004000"))
                     btn2.isClickable = false
-                    btn1.setBackgroundColor(Color.parseColor("#004000"))
+                    btn2.setBackgroundColor(Color.parseColor("#004000"))
                 }
                 buttonClicked1 = 0
                 buttonClicked2 = 0
@@ -73,23 +72,21 @@ class MatchPairs : AppCompatActivity() {
             else{
                 b1 = binding.leftOne.text.toString()
                 buttonClicked1 = binding.leftOne.id
-                val mensaje = Toast.makeText(binding.root.context,b1,Toast.LENGTH_LONG).show()
             }
         }
 
         binding.leftTwo.text = pregunta.pairs[1][0]
-        binding.leftOne.setOnClickListener {
+        binding.leftTwo.setOnClickListener {
             if(b1 != ""){
                 b2 = binding.leftTwo.text.toString()
-                buttonClicked2 = binding.leftOne.id
-                val mensaje = Toast.makeText(binding.root.context,b2,Toast.LENGTH_LONG).show()
+                buttonClicked2 = binding.leftTwo.id
                 if(checkCorrecto(b1,b2,pregunta.pairs)){
                     val btn1 = findViewById<Button>(buttonClicked1)
                     val btn2 = findViewById<Button>(buttonClicked2)
                     btn1.isClickable = false
                     btn1.setBackgroundColor(Color.parseColor("#004000"))
                     btn2.isClickable = false
-                    btn1.setBackgroundColor(Color.parseColor("#004000"))
+                    btn2.setBackgroundColor(Color.parseColor("#004000"))
                 }
                 buttonClicked1 = 0
                 buttonClicked2 = 0
@@ -98,8 +95,7 @@ class MatchPairs : AppCompatActivity() {
             }
             else{
                 b1 = binding.leftTwo.text.toString()
-                buttonClicked1 = binding.leftOne.id
-                val mensaje = Toast.makeText(binding.root.context,b1,Toast.LENGTH_LONG).show()
+                buttonClicked1 = binding.leftTwo.id
             }
         }
 
@@ -107,15 +103,14 @@ class MatchPairs : AppCompatActivity() {
         binding.rightOne.setOnClickListener {
             if(b1 != ""){
                 b2 = binding.rightOne.text.toString()
-                buttonClicked2 = binding.leftOne.id
-                val mensaje = Toast.makeText(binding.root.context,b2,Toast.LENGTH_LONG).show()
+                buttonClicked2 = binding.rightOne.id
                 if(checkCorrecto(b1,b2,pregunta.pairs)){
                     val btn1 = findViewById<Button>(buttonClicked1)
                     val btn2 = findViewById<Button>(buttonClicked2)
                     btn1.isClickable = false
                     btn1.setBackgroundColor(Color.parseColor("#004000"))
                     btn2.isClickable = false
-                    btn1.setBackgroundColor(Color.parseColor("#004000"))
+                    btn2.setBackgroundColor(Color.parseColor("#004000"))
                 }
                 buttonClicked1 = 0
                 buttonClicked2 = 0
@@ -124,8 +119,7 @@ class MatchPairs : AppCompatActivity() {
             }
             else{
                 b1 = binding.rightOne.text.toString()
-                buttonClicked1 = binding.leftOne.id
-                val mensaje = Toast.makeText(binding.root.context,b1,Toast.LENGTH_LONG).show()
+                buttonClicked1 = binding.rightOne.id
             }
         }
 
@@ -133,15 +127,14 @@ class MatchPairs : AppCompatActivity() {
         binding.rightTwo.setOnClickListener {
             if(b1 != ""){
                 b2 = binding.rightTwo.text.toString()
-                buttonClicked2 = binding.leftOne.id
-                val mensaje = Toast.makeText(binding.root.context,b2,Toast.LENGTH_LONG).show()
+                buttonClicked2 = binding.rightTwo.id
                 if(checkCorrecto(b1,b2,pregunta.pairs)){
                     val btn1 = findViewById<Button>(buttonClicked1)
                     val btn2 = findViewById<Button>(buttonClicked2)
                     btn1.isClickable = false
                     btn1.setBackgroundColor(Color.parseColor("#004000"))
                     btn2.isClickable = false
-                    btn1.setBackgroundColor(Color.parseColor("#004000"))
+                    btn2.setBackgroundColor(Color.parseColor("#004000"))
                 }
                 buttonClicked1 = 0
                 buttonClicked2 = 0
@@ -150,8 +143,7 @@ class MatchPairs : AppCompatActivity() {
             }
             else{
                 b1 = binding.rightTwo.text.toString()
-                buttonClicked1 = binding.leftOne.id
-                val mensaje = Toast.makeText(binding.root.context,b1,Toast.LENGTH_LONG).show()
+                buttonClicked1 = binding.rightTwo.id
             }
         }
     }
@@ -162,7 +154,7 @@ class MatchPairs : AppCompatActivity() {
         }
         if(correcto){
             contador += 1
-            val mensaje = Toast.makeText(binding.root.context,"Bien, sólo te falta una más",Toast.LENGTH_LONG).show()
+            val mensaje = Toast.makeText(binding.root.context,"Bien, sólo te falta una más",Toast.LENGTH_SHORT).show()
             if (contador >= 2){
                 correcto()
             }
@@ -180,7 +172,7 @@ class MatchPairs : AppCompatActivity() {
         )
         val transitionDrawable = TransitionDrawable(colorDrawables)
         binding.fondo.background = transitionDrawable
-        val mensaje = Toast.makeText(binding.root.context,"¡Muy bien hecho!", Toast.LENGTH_LONG).show()
+        val mensaje = Toast.makeText(binding.root.context,"¡Muy bien hecho!", Toast.LENGTH_SHORT).show()
         transitionDrawable.startTransition(2500)
         val handler = Handler()
         handler.postDelayed({
