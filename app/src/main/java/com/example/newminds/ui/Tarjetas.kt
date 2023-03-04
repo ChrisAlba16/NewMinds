@@ -10,7 +10,7 @@ import android.os.Handler
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.newminds.databinding.ActivityFlashcardsBinding
+import com.example.newminds.databinding.ActividadTarjetasBinding
 import com.example.newminds.utils.FlashCards
 data class f(
     val id: Int,
@@ -23,11 +23,11 @@ data class f(
 )
 
 class Flashcard:AppCompatActivity() {
-    lateinit var binding: ActivityFlashcardsBinding
+    lateinit var binding: ActividadTarjetasBinding
     lateinit var pregunta: f
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityFlashcardsBinding.inflate(layoutInflater)
+        binding = ActividadTarjetasBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val p = intent.getParcelableExtra<FlashCards>("pregunta")!!
         val pair = arrayOf(arrayOf(p.textos[0]?:"", p.urls[0]?:""),arrayOf(p.textos[1]?:"", p.urls[1]?:""),arrayOf(p.textos[2]?:"", p.urls[2]?:""),arrayOf(p.textos[3]?:"", p.urls[3]?:""))
@@ -64,7 +64,7 @@ class Flashcard:AppCompatActivity() {
         }
         binding.txt4.text = pregunta.flashCard[3][0]
         binding.cancelar.setOnClickListener {
-            val intent = Intent(this@Flashcard, LessonList::class.java)
+            val intent = Intent(this@Flashcard, Mapa::class.java)
             startActivity(intent)
             finish()
         }

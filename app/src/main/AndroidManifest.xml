@@ -22,11 +22,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.Login" />
-        <activity android:name=".ui.LessonList" />
+        <activity android:name=".ui.Mapa" />
         <activity android:name=".ui.MatchPairs" />
-        <activity android:name=".ui.MultipleChoiceUI" />
+        <activity android:name=".ui.Opciones" />
         <activity android:name=".ui.Flashcard" />
-        <activity android:name=".ui.HandlerActivity" />
+        <activity android:name=".ui.Actividades" />
     </application>
 
 </manifest>

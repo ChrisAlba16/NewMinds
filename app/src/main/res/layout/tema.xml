@@ -12,7 +12,7 @@
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:layout_centerInParent="true"
-            android:background="@drawable/estrella" />
+            android:background="@drawable/icono_estrella" />
 
         <ProgressBar
             android:id="@+id/progreso"
@@ -21,7 +21,7 @@
             android:layout_height="125dp"
             android:layout_centerInParent="true"
             android:indeterminate="false"
-            android:progressDrawable="@drawable/progress" />
+            android:progressDrawable="@drawable/borde_progreso" />
 
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

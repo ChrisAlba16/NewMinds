@@ -11,16 +11,16 @@ import android.os.Handler
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.newminds.databinding.ActivityMultiplechoiceBinding
+import com.example.newminds.databinding.ActividadOpcionesBinding
 import com.example.newminds.utils.MultipleChoice
 
 
-class MultipleChoiceUI:AppCompatActivity() {
-    private lateinit var binding: ActivityMultiplechoiceBinding
+class Opciones:AppCompatActivity() {
+    private lateinit var binding: ActividadOpcionesBinding
     private lateinit var pregunta: MultipleChoice
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
-        binding = ActivityMultiplechoiceBinding.inflate(layoutInflater)
+        binding = ActividadOpcionesBinding.inflate(layoutInflater)
         setContentView(binding.root)
         pregunta = intent.getParcelableExtra<MultipleChoice>("pregunta")!!
         if(pregunta.video == "" || pregunta.video == null){
@@ -52,7 +52,7 @@ class MultipleChoiceUI:AppCompatActivity() {
             checkCorrecto(4,answer)
         }
         binding.cancelar.setOnClickListener {
-            val intent = Intent(this@MultipleChoiceUI, LessonList::class.java)
+            val intent = Intent(this@Opciones, Mapa::class.java)
             startActivity(intent)
             finish()
         }

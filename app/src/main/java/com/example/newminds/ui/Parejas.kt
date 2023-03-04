@@ -11,7 +11,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.newminds.databinding.ActivityMatchPairsBinding
+import com.example.newminds.databinding.ActividadParejasBinding
 import com.example.newminds.utils.Pairs
 data class m(
     val id: Int,
@@ -22,7 +22,7 @@ data class m(
 )
 
 class MatchPairs : AppCompatActivity() {
-    private lateinit var binding: ActivityMatchPairsBinding
+    private lateinit var binding: ActividadParejasBinding
     private lateinit var pregunta: m
     private var contador = 0
     private var b1 = ""
@@ -31,7 +31,7 @@ class MatchPairs : AppCompatActivity() {
     private var buttonClicked2 = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMatchPairsBinding.inflate(layoutInflater)
+        binding = ActividadParejasBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val p = intent.getParcelableExtra<Pairs>("pregunta")!!
         val pair = arrayOf(arrayOf(p.parejas[0], p.respuestas[0]),arrayOf(p.parejas[1], p.respuestas[1]),arrayOf(p.parejas[2], p.respuestas[2]),arrayOf(p.parejas[3], p.respuestas[3]))
@@ -47,7 +47,7 @@ class MatchPairs : AppCompatActivity() {
             }
         }
         binding.cancelar.setOnClickListener {
-            val intent = Intent(this@MatchPairs, LessonList::class.java)
+            val intent = Intent(this@MatchPairs, Mapa::class.java)
             startActivity(intent)
             finish()
         }

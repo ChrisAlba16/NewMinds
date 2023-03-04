@@ -41,7 +41,7 @@
         android:id="@+id/get_started_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/get_started_button"
+        android:background="@drawable/fondo_boton_empezar"
         android:textColor="@color/blue_pair"
         android:text="Empecemos"
         android:textSize="20sp"
