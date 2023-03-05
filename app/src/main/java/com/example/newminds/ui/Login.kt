@@ -20,16 +20,16 @@ class Login : AppCompatActivity() {
         binding = ActividadLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.signInButton.setOnClickListener {
+        binding.botonIniciarSesion.setOnClickListener {
             try {
-                val matricula = Integer.parseInt(binding.matricula.text.toString())
-                val contra = binding.password.text.toString()
+                val matricula = Integer.parseInt(binding.textoMatricula.text.toString())
+                val contrasena = binding.textoContrasena.text.toString()
 
                 GlobalScope.launch(Dispatchers.IO) {
-                    val answer = async { Requests.login(matricula, contra) }
-                    if (answer.await().size == 1) {
-                        val intent = Intent(this@Login, Mapa::class.java)
-                        startActivity(intent)
+                    val repuesta_request = async { Requests.login(matricula, contrasena) }
+                    if (repuesta_request.await().size == 1) {
+                        val intento_login_mapa = Intent(this@Login, Mapa::class.java)
+                        startActivity(intento_login_mapa)
                         finish()
                     }
                 }
@@ -40,9 +40,9 @@ class Login : AppCompatActivity() {
 
         }
 
-        binding.backButton.setOnClickListener {
-            val intent = Intent(this@Login, MainActivity::class.java)
-            startActivity(intent)
+        binding.botonRegreso.setOnClickListener {
+            val intento_login_bienvenida = Intent(this@Login, MainActivity::class.java)
+            startActivity(intento_login_bienvenida)
             finish()
         }
     }

@@ -1,51 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blue_background"
+    android:background="@color/color_fondo_azul"
     android:padding="16dp">
 
     <TextView
-        android:id="@+id/layout_title"
+        android:id="@+id/titulo_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="NewMinds"
-        android:textSize="40sp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="150dp"
-        android:textColor="@color/white_text"/>
+        android:text="@string/nombre_app"
+        android:textColor="@color/color_texto_blanco"
+        android:textSize="40sp" />
 
     <TextView
-        android:id="@+id/layout_subtitle_one"
+        android:id="@+id/descripcion_layout_uno"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Desarrollando Habilidades Especiales"
-        android:textSize="20sp"
-        android:layout_below="@+id/layout_title"
+        android:layout_below="@+id/titulo_layout"
         android:layout_centerHorizontal="true"
-        android:gravity="center"
         android:layout_marginTop="75dp"
-        android:textColor="@color/white_text"/>
+        android:gravity="center"
+        android:text="@string/descripcion_app_uno"
+        android:textColor="@color/color_texto_blanco"
+        android:textSize="20sp" />
+
     <TextView
-        android:id="@+id/layout_subtitle_two"
+        android:id="@+id/descripcion_layout_dos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Para Personas Especiales"
-        android:textSize="20sp"
-        android:layout_below="@+id/layout_subtitle_one"
+        android:layout_below="@+id/descripcion_layout_uno"
         android:layout_centerHorizontal="true"
         android:gravity="center"
-        android:textColor="@color/white_text"/>
+        android:text="@string/descripcion_app_dos"
+        android:textColor="@color/color_texto_blanco"
+        android:textSize="20sp" />
+
     <Button
-        android:id="@+id/get_started_button"
+        android:id="@+id/boton_empecemos"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/descripcion_layout_dos"
+        android:layout_marginTop="150dp"
         android:background="@drawable/fondo_boton_empezar"
-        android:textColor="@color/blue_pair"
-        android:text="Empecemos"
-        android:textSize="20sp"
-        android:layout_below = "@+id/layout_subtitle_two"
-        android:layout_marginTop="150dp"/>
+        android:text="@string/boton_empecemos"
+        android:textColor="@color/color_azul"
+        android:textSize="20sp" />
 
 </RelativeLayout>

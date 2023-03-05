@@ -16,46 +16,44 @@ import kotlinx.coroutines.launch
 
 class Mapa : AppCompatActivity() {
     private lateinit var binding: ActividadMapaBinding
-    private lateinit var lista: MutableList<Mapa>
+    private lateinit var mapa: MutableList<Mapa>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActividadMapaBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        lista = mutableListOf<Mapa>()
+
         GlobalScope.launch(Dispatchers.IO) {
-            val mapa = async { Requests.mapa(1) }
-            if (mapa.await().size != 0) {
-                var previousValue: String? = null
-                for ((index, dato) in mapa.await().iterator().withIndex()) {
-                    if (previousValue == null || previousValue != dato.nombreUnidad) {
-                        runOnUiThread {
-                            val inflater = LayoutInflater.from(this@Mapa)
-                            val subLayoutBinding =
-                                UnidadBinding.inflate(inflater, binding.lienzo, true)
-                            subLayoutBinding.titulo.setText("Unidad ${index + 1}")
-                            subLayoutBinding.subtitulo.setText(dato.nombreUnidad)
-                            val infla = LayoutInflater.from(this@Mapa)
-                            val sub = TemaBinding.inflate(infla, binding.lienzo, true)
-                            sub.progreso.progress = 33
-                            sub.myButton.setOnClickListener {
-                                val intent = Intent(this@Mapa, Actividades::class.java)
-                                intent.putExtra("idEstudiante", 1)
-                                intent.putExtra("idMateria", 1)
-                                startActivity(intent)
-                                finish()
-                            }
+            mapa = async { Requests.mapa(1) }.await()
+            runOnUiThread {
+                binding.materiaActual.text = "Prototipo"
+                var valor_anterior: String? = null
+                for ((indice, dato) in mapa.iterator().withIndex()) {
+                    if (valor_anterior != null && valor_anterior == dato.nombre_unidad) {
+                        val inflar_mapa = LayoutInflater.from(this@Mapa)
+                        val segundo_binding = TemaBinding.inflate(inflar_mapa, binding.seccionMapa, true)
+                        segundo_binding.circuloProgreso.progress = 0
+                        segundo_binding.botonTema.setOnClickListener {
                         }
-                        previousValue = dato.nombreUnidad
-                    } else {
-                        runOnUiThread {
-                            val infla = LayoutInflater.from(this@Mapa)
-                            val sub = TemaBinding.inflate(infla, binding.lienzo, true)
-                            sub.progreso.progress = 0
-                            sub.myButton.setOnClickListener {
-                            }
-                        }
+                        continue
                     }
+                    val inflar_mapa = LayoutInflater.from(this@Mapa)
+                    val segundo_binding =
+                        UnidadBinding.inflate(inflar_mapa, binding.seccionMapa, true)
+                    segundo_binding.tituloUnidad.setText("Unidad ${indice + 1}")
+                    segundo_binding.subtituloUnidad.setText(dato.nombre_unidad)
+
+                    val tercer_binding = TemaBinding.inflate(inflar_mapa, binding.seccionMapa, true)
+                    tercer_binding.circuloProgreso.progress = 33
+                    tercer_binding.botonTema.setOnClickListener {
+                        val intento_mapa_actividades = Intent(this@Mapa, Actividades::class.java)
+                        intento_mapa_actividades.putExtra("idEstudiante", 1)
+                        intento_mapa_actividades.putExtra("idMateria", 1)
+                        startActivity(intento_mapa_actividades)
+                        finish()
+                    }
+                    valor_anterior = dato.nombre_unidad
                 }
             }
         }

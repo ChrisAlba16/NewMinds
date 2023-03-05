@@ -9,35 +9,35 @@ import java.sql.DriverManager
 import java.sql.PreparedStatement
 import java.sql.ResultSet
 
-data class User(val id: Int, val nombre: String, val contra: String)
-data class Mapa(val nombreUnidad: String, val nombreTema: String)
-data class Progreso(val idTema: Int, val numero_actividad: Int)
+data class Usuario(val id: Int, val nombre: String, val contrasena: String)
+data class Mapa(val nombre_unidad: String, val nombre_tema: String)
+data class Progreso(val id_tema: Int, val numero_actividad: Int)
 
 @Parcelize
-data class MultipleChoice(
+data class DatosOpciones(
     val id: Int,
-    val idTema: Int,
+    val id_tema: Int,
     val texto: String,
-    val options: Array<String>,
+    val opciones: Array<String>,
     val url: String,
     val respuesta: String,
     val video: String,
-    val numeroActividad: Int
+    val numero_actividad: Int
 ) : Parcelable {
-    companion object : Parceler<MultipleChoice> {
-        override fun MultipleChoice.write(parcel: Parcel, flags: Int) {
+    companion object : Parceler<DatosOpciones> {
+        override fun DatosOpciones.write(parcel: Parcel, flags: Int) {
             parcel.writeInt(id)
-            parcel.writeInt(idTema)
+            parcel.writeInt(id_tema)
             parcel.writeString(texto)
-            parcel.writeStringArray(options)
+            parcel.writeStringArray(opciones)
             parcel.writeString(url)
             parcel.writeString(respuesta)
             parcel.writeString(video)
-            parcel.writeInt(numeroActividad)
+            parcel.writeInt(numero_actividad)
         }
 
-        override fun create(parcel: Parcel): MultipleChoice {
-            return MultipleChoice(
+        override fun create(parcel: Parcel): DatosOpciones {
+            return DatosOpciones(
                 parcel.readInt(),
                 parcel.readInt(),
                 parcel.readString() ?: "",
@@ -52,32 +52,32 @@ data class MultipleChoice(
 }
 
 @Parcelize
-data class FlashCards(
+data class DatosTarjetas(
     val id: Int,
-    val idTema: Int,
+    val id_tema: Int,
     val pregunta: String,
     val textos: Array<String?>,
     val urls: Array<String?>,
     val respuesta: String,
     val video: String,
-    val numeroActividad: Int
+    val numero_actividad: Int
 ) : Parcelable {
     override fun describeContents(): Int = 0
 
-    companion object : Parceler<FlashCards> {
-        override fun FlashCards.write(parcel: Parcel, flags: Int) {
+    companion object : Parceler<DatosTarjetas> {
+        override fun DatosTarjetas.write(parcel: Parcel, flags: Int) {
             parcel.writeInt(id)
-            parcel.writeInt(idTema)
+            parcel.writeInt(id_tema)
             parcel.writeString(pregunta)
             parcel.writeStringArray(textos)
             parcel.writeStringArray(urls)
             parcel.writeString(respuesta)
             parcel.writeString(video)
-            parcel.writeInt(numeroActividad)
+            parcel.writeInt(numero_actividad)
         }
 
-        override fun create(parcel: Parcel): FlashCards {
-            return FlashCards(
+        override fun create(parcel: Parcel): DatosTarjetas {
+            return DatosTarjetas(
                 parcel.readInt(),
                 parcel.readInt(),
                 parcel.readString() ?: "",
@@ -92,30 +92,30 @@ data class FlashCards(
 }
 
 @Parcelize
-data class Pairs(
+data class datosParejas(
     val id: Int,
-    val idTema: Int,
+    val id_tema: Int,
     val parejas: Array<String>,
     val respuestas: Array<String>,
     val video: String,
-    val numeroActividad: Int
+    val numero_actividad: Int
 ) : Parcelable {
 
     override fun describeContents() = 0
 
-    companion object : Parceler<Pairs> {
+    companion object : Parceler<datosParejas> {
 
-        override fun Pairs.write(parcel: Parcel, flags: Int) {
+        override fun datosParejas.write(parcel: Parcel, flags: Int) {
             parcel.writeInt(id)
-            parcel.writeInt(idTema)
+            parcel.writeInt(id_tema)
             parcel.writeStringArray(parejas)
             parcel.writeStringArray(respuestas)
             parcel.writeString(video)
-            parcel.writeInt(numeroActividad)
+            parcel.writeInt(numero_actividad)
         }
 
-        override fun create(parcel: Parcel): Pairs {
-            return Pairs(
+        override fun create(parcel: Parcel): datosParejas {
+            return datosParejas(
                 parcel.readInt(),
                 parcel.readInt(),
                 parcel.createStringArray() ?: emptyArray(),
@@ -132,201 +132,203 @@ object Requests {
     private const val user = "freedb_newminds"
     private const val password = "4ZJ7JuGNjY4TG&z"
 
-    fun login(matricula: Int, contra: String): MutableList<User> {
-        val users = mutableListOf<User>()
+    fun login(matricula: Int, contrasena: String): MutableList<Usuario> {
+        val usuarios = mutableListOf<Usuario>()
 
         try {
-            DriverManager.getConnection(url, user, password).use { connection ->
-                val sql = "CALL login($matricula, $contra);"
-                val statement: PreparedStatement = connection.prepareStatement(sql)
-                val resultSet: ResultSet = statement.executeQuery()
-                while (resultSet.next()) {
-                    val id = resultSet.getInt("id")
-                    val nombre = resultSet.getString("nombre")
-                    val contra = resultSet.getString("contra")
-                    users.add(User(id, nombre, contra))
+            DriverManager.getConnection(url, user, password).use { conexion ->
+                val sql = "CALL login($matricula, $contrasena);"
+                val sentencia: PreparedStatement = conexion.prepareStatement(sql)
+                val resultado: ResultSet = sentencia.executeQuery()
+                while (resultado.next()) {
+                    val id = resultado.getInt("id")
+                    val nombre = resultado.getString("nombre")
+                    val contrasena = resultado.getString("contra")
+                    usuarios.add(Usuario(id, nombre, contrasena))
                 }
             }
         } catch (e: Exception) {
-            Log.e("Connection", "Error reading database information", e)
+            Log.e("Conexion", "Error al leer la base de datos", e)
         }
-        return users
+        return usuarios
     }
 
 
-    fun multipleChoice(idTema: Int, numeroActividad: Int): MutableList<MultipleChoice> {
-        val questions = mutableListOf<MultipleChoice>()
+    fun multipleChoice(id_tema: Int, numero_actividad: Int): MutableList<DatosOpciones> {
+        val preguntas = mutableListOf<DatosOpciones>()
 
         try {
-            DriverManager.getConnection(url, user, password).use { connection ->
-                val sql = "CALL preguntas_multiplechoice($idTema, $numeroActividad);"
-                val statement: PreparedStatement = connection.prepareStatement(sql)
-                val resultSet: ResultSet = statement.executeQuery()
-                while (resultSet.next()) {
-                    val id = resultSet.getInt("id")
-                    val idTema = resultSet.getInt("id_tema")
-                    val texto = resultSet.getString("texto")
+            DriverManager.getConnection(url, user, password).use { conexion ->
+                val sql = "CALL preguntas_opciones($id_tema, $numero_actividad);"
+                val sentencia: PreparedStatement = conexion.prepareStatement(sql)
+                val resultado: ResultSet = sentencia.executeQuery()
+                while (resultado.next()) {
+                    val id = resultado.getInt("id")
+                    val id_tema = resultado.getInt("id_tema")
+                    val texto = resultado.getString("texto")
                     val ops = arrayOf<String>(
-                        resultSet.getString("op1"),
-                        resultSet.getString("op2"),
-                        resultSet.getString("op3"),
-                        resultSet.getString("op4")
+                        resultado.getString("op1"),
+                        resultado.getString("op2"),
+                        resultado.getString("op3"),
+                        resultado.getString("op4")
                     )
-                    val url = resultSet.getString("url_imagen")
+                    val url = resultado.getString("url_imagen")
 
-                    val respuesta = resultSet.getString("respuesta")
-                    val video = resultSet.getString("video")
-                    val numeroActividad = resultSet.getInt("numero_actividad")
-                    questions.add(
-                        MultipleChoice(
+                    val respuesta = resultado.getString("respuesta")
+                    val video = resultado.getString("video")
+                    val numero_actividad = resultado.getInt("numero_actividad")
+                    preguntas.add(
+                        DatosOpciones(
                             id,
-                            idTema,
+                            id_tema,
                             texto,
                             ops,
                             url,
                             respuesta,
                             video,
-                            numeroActividad
+                            numero_actividad
                         )
                     )
                 }
             }
         } catch (e: Exception) {
-            Log.e("Connection", "Error reading database information", e)
+            Log.e("Conexion", "Error al leer la base de datos", e)
         }
-        return questions
+        return preguntas
     }
 
-    fun flashcards(idTema: Int, numeroActividad: Int): MutableList<FlashCards> {
-        val questions = mutableListOf<FlashCards>()
+    fun flashcards(id_tema: Int, numero_actividad: Int): MutableList<DatosTarjetas> {
+        val questions = mutableListOf<DatosTarjetas>()
 
         try {
-            DriverManager.getConnection(url, user, password).use { connection ->
-                val sql = "CALL preguntas_flashcards($idTema, $numeroActividad);"
-                val statement: PreparedStatement = connection.prepareStatement(sql)
-                val resultSet: ResultSet = statement.executeQuery()
-                while (resultSet.next()) {
-                    val id = resultSet.getInt("id")
-                    val idTema = resultSet.getInt("id_tema")
-                    val pregunta = resultSet.getString("pregunta")
-                    val t1 = resultSet.getString("texto1")
-                    val u1 = resultSet.getString("url1")
+            DriverManager.getConnection(url, user, password).use { conexion ->
+                val sql = "CALL preguntas_tarjetas($id_tema, $numero_actividad);"
+                val sentencia: PreparedStatement = conexion.prepareStatement(sql)
+                val resultado: ResultSet = sentencia.executeQuery()
+                while (resultado.next()) {
+                    val id = resultado.getInt("id")
+                    val id_tema = resultado.getInt("id_tema")
+                    val pregunta = resultado.getString("pregunta")
 
-                    val t2 = resultSet.getString("texto2")
-                    val u2 = resultSet.getString("url2")
+                    //
+                    val t1 = resultado.getString("texto1")
+                    val u1 = resultado.getString("url1")
 
-                    val t3 = resultSet.getString("texto3")
-                    val u3 = resultSet.getString("url3")
+                    val t2 = resultado.getString("texto2")
+                    val u2 = resultado.getString("url2")
 
-                    val t4 = resultSet.getString("texto4")
-                    val u4 = resultSet.getString("url4")
+                    val t3 = resultado.getString("texto3")
+                    val u3 = resultado.getString("url3")
+
+                    val t4 = resultado.getString("texto4")
+                    val u4 = resultado.getString("url4")
 
 
                     val textos = arrayOf(t1, t2, t3, t4)
                     val urls = arrayOf(u1, u2, u3, u4)
 
-                    val respuesta = resultSet.getString("respuesta")
-                    val video = resultSet.getString("video")
-                    val numeroActividad = resultSet.getInt("numero_actividad")
+                    val respuesta = resultado.getString("respuesta")
+                    val video = resultado.getString("video")
+                    val numero_actividad = resultado.getInt("numero_actividad")
                     questions.add(
-                        FlashCards(
+                        DatosTarjetas(
                             id,
-                            idTema,
+                            id_tema,
                             pregunta,
                             textos,
                             urls,
                             respuesta,
                             video,
-                            numeroActividad
+                            numero_actividad
                         )
                     )
                 }
             }
         } catch (e: Exception) {
-            Log.e("Connection", "Error reading database information", e)
+            Log.e("Conexion", "Error al leer la base de datos", e)
         }
         return questions
     }
 
-    fun pairs(idTema: Int, numeroActividad: Int): MutableList<Pairs> {
-        val pares = mutableListOf<Pairs>()
+    fun pairs(id_tema: Int, numero_actividad: Int): MutableList<datosParejas> {
+        val pares = mutableListOf<datosParejas>()
 
         try {
-            DriverManager.getConnection(url, user, password).use { connection ->
-                val sql = "CALL preguntas_pairs($idTema, $numeroActividad);"
-                val statement: PreparedStatement = connection.prepareStatement(sql)
-                val resultSet: ResultSet = statement.executeQuery()
-                while (resultSet.next()) {
-                    val id = resultSet.getInt("id")
-                    val idTema = resultSet.getInt("id_tema")
+            DriverManager.getConnection(url, user, password).use { conexion ->
+                val sql = "CALL preguntas_parejas($id_tema, $numero_actividad);"
+                val sentencia: PreparedStatement = conexion.prepareStatement(sql)
+                val resultado: ResultSet = sentencia.executeQuery()
+                while (resultado.next()) {
+                    val id = resultado.getInt("id")
+                    val id_tema = resultado.getInt("id_tema")
                     val parejas = arrayOf(
-                        resultSet.getString("pareja1"),
-                        resultSet.getString("pareja2"),
-                        resultSet.getString("pareja3"),
-                        resultSet.getString("pareja4")
+                        resultado.getString("pareja1"),
+                        resultado.getString("pareja2"),
+                        resultado.getString("pareja3"),
+                        resultado.getString("pareja4")
                     )
                     val respuestas = arrayOf(
-                        resultSet.getString("respuesta1"),
-                        resultSet.getString("respuesta2"),
-                        resultSet.getString("respuesta3"),
-                        resultSet.getString("respuesta4")
+                        resultado.getString("respuesta1"),
+                        resultado.getString("respuesta2"),
+                        resultado.getString("respuesta3"),
+                        resultado.getString("respuesta4")
                     )
 
-                    val video = resultSet.getString("video")
-                    val numeroActividad = resultSet.getInt("numero_actividad")
+                    val video = resultado.getString("video")
+                    val numero_actividad = resultado.getInt("numero_actividad")
                     pares.add(
-                        Pairs(
+                        datosParejas(
                             id,
-                            idTema,
+                            id_tema,
                             parejas,
                             respuestas,
                             video,
-                            numeroActividad
+                            numero_actividad
                         )
                     )
                 }
             }
         } catch (e: Exception) {
-            Log.e("Connection", "Error reading database information", e)
+            Log.e("Conexion", "Error al leer la base de datos", e)
         }
         return pares
     }
 
-    fun mapa(idMateria: Int): MutableList<Mapa> {
+    fun mapa(id_materia: Int): MutableList<Mapa> {
         val mapas = mutableListOf<Mapa>()
 
         try {
-            DriverManager.getConnection(url, user, password).use { connection ->
-                val sql = "CALL mapa($idMateria);"
-                val statement: PreparedStatement = connection.prepareStatement(sql)
-                val resultSet: ResultSet = statement.executeQuery()
-                while (resultSet.next()) {
-                    val nombreUnidad = resultSet.getString("nombre_Unidad")
-                    val nombreTema = resultSet.getString("nombre_Tema")
-                    mapas.add(Mapa(nombreUnidad, nombreTema))
+            DriverManager.getConnection(url, user, password).use { conexion ->
+                val sql = "CALL mapa($id_materia);"
+                val sentencia: PreparedStatement = conexion.prepareStatement(sql)
+                val resultado: ResultSet = sentencia.executeQuery()
+                while (resultado.next()) {
+                    val nombre_unidad = resultado.getString("nombre_Unidad")
+                    val nombre_tema = resultado.getString("nombre_Tema")
+                    mapas.add(Mapa(nombre_unidad, nombre_tema))
                 }
             }
         } catch (e: Exception) {
-            Log.e("Connection", "Error reading database information", e)
+            Log.e("Conexion", "Error al leer la base de datos", e)
         }
         return mapas
     }
 
-    fun progreso(idEstudiante: Int, idMateria: Int): Progreso {
+    fun progreso(id_estudiante: Int, id_materia: Int): Progreso {
         lateinit var progreso: Progreso
         try {
-            DriverManager.getConnection(url, user, password).use { connection ->
-                val sql = "CALL progreso_estudiante($idEstudiante,$idMateria);"
-                val statement: PreparedStatement = connection.prepareStatement(sql)
-                val resultSet: ResultSet = statement.executeQuery()
-                while (resultSet.next()) {
-                    val idTema = resultSet.getInt("id_tema")
-                    val numeroActividad = resultSet.getInt("numero_actividad")
-                    progreso = Progreso(idTema, numeroActividad)
+            DriverManager.getConnection(url, user, password).use { conexion ->
+                val sql = "CALL progreso_estudiante($id_estudiante,$id_materia);"
+                val sentencia: PreparedStatement = conexion.prepareStatement(sql)
+                val resultado: ResultSet = sentencia.executeQuery()
+                while (resultado.next()) {
+                    val id_tema = resultado.getInt("id_tema")
+                    val numero_actividad = resultado.getInt("numero_actividad")
+                    progreso = Progreso(id_tema, numero_actividad)
                 }
             }
         } catch (e: Exception) {
-            Log.e("Connection", "Error reading database information", e)
+            Log.e("Conexion", "Error al leer la base de datos", e)
         }
         return progreso
     }

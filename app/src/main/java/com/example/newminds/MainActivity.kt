@@ -16,11 +16,10 @@ class MainActivity : AppCompatActivity() {
         binding = ActividadBienvenidaBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.getStartedButton.setOnClickListener {
-            val intent = Intent(this@MainActivity, Login::class.java)
-            startActivity(intent)
+        binding.botonEmpecemos.setOnClickListener {
+            val intento_bienvenida_login = Intent(this@MainActivity, Login::class.java)
+            startActivity(intento_bienvenida_login)
             finish()
         }
     }
-
 }

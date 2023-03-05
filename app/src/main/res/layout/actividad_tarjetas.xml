@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/cancelar"
+        android:id="@+id/boton_regreso"
         android:layout_width="54dp"
         android:layout_height="47dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -18,9 +18,10 @@
         app:srcCompat="@drawable/icono_boton_cerrar" />
 
     <ImageView
-        android:id="@+id/duda"
+        android:id="@+id/boton_video"
         android:layout_width="54dp"
         android:layout_height="47dp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.955"
@@ -30,11 +31,10 @@
         app:srcCompat="@drawable/icono_boton_video" />
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="304dp"
-        android:layout_height="30dp"
+        android:id="@+id/titulo_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Elige la respuesta correcta"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -70,16 +70,17 @@
                 android:weightSum="2">
 
                 <ImageView
-                    android:id="@+id/SupIzq"
+                    android:id="@+id/imagen_uno"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:src="@drawable/icono_mascota" />
+
                 <TextView
-                    android:id="@+id/txt1"
+                    android:id="@+id/texto_uno"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    />
+                    android:gravity="center" />
 
             </LinearLayout>
 
@@ -92,17 +93,17 @@
                 android:weightSum="2">
 
                 <ImageView
-                    android:id="@+id/SupDer"
+                    android:id="@+id/imagen_dos"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:src="@drawable/icono_mascota" />
 
                 <TextView
-                    android:id="@+id/txt2"
+                    android:id="@+id/texto_dos"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    />
+                    android:gravity="center" />
 
             </LinearLayout>
 
@@ -122,17 +123,17 @@
                 android:weightSum="2">
 
                 <ImageView
-                    android:id="@+id/InfIzq"
+                    android:id="@+id/imagen_tres"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:src="@drawable/icono_mascota" />
 
                 <TextView
-                    android:id="@+id/txt3"
+                    android:id="@+id/texto_tres"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    />
+                    android:gravity="center" />
 
             </LinearLayout>
 
@@ -145,17 +146,17 @@
                 android:weightSum="2">
 
                 <ImageView
-                    android:id="@+id/InfDer"
+                    android:id="@+id/imagen_cuatro"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:src="@drawable/icono_mascota" />
 
                 <TextView
-                    android:id="@+id/txt4"
+                    android:id="@+id/texto_cuatro"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    />
+                    android:gravity="center" />
 
             </LinearLayout>
 

@@ -11,85 +11,83 @@ import kotlinx.coroutines.launch
 
 class Actividades() : AppCompatActivity() {
 
-    private lateinit var match: MutableList<Pairs>
-    private lateinit var multiple: MutableList<MultipleChoice>
-    private lateinit var flash: MutableList<FlashCards>
+    private lateinit var parejas: MutableList<datosParejas>
+    private lateinit var opciones: MutableList<DatosOpciones>
+    private lateinit var tarjetas: MutableList<DatosTarjetas>
 
-    //private lateinit var progreso: Progreso
     var contador = 1
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val idMateria = intent.getIntExtra("idMateria", 1)
-        val idEstudiante = intent.getIntExtra("idEstudiante", 1)
-        GlobalScope.launch(Dispatchers.IO) {
-            //progreso = Requests.progreso(idEstudiante, idMateria)
-            async {
-                match = Requests.pairs(1, 1)
-                multiple = Requests.multipleChoice(1, 1)
-                flash = Requests.flashcards(1, 1)
-            }.await()
-            println("Hola")
-            println(flash)
-            contador += 1
-            val i = Intent(this@Actividades, Opciones::class.java)
-            i.putExtra("pregunta", multiple[0])
-            startActivity(i)
 
+        GlobalScope.launch(Dispatchers.IO) {
+            async {
+                opciones = Requests.multipleChoice(1, 1)
+            }.await()
+
+            val intento_actividades_opciones = Intent(this@Actividades, Opciones::class.java)
+            intento_actividades_opciones.putExtra("pregunta", opciones[0])
+            startActivity(intento_actividades_opciones)
+
+            async {
+                parejas = Requests.pairs(1, 1)
+                tarjetas = Requests.flashcards(1, 1)
+            }.await()
+            contador += 1
         }
     }
 
     override fun onResume() {
         super.onResume()
-        if(::multiple.isInitialized &&  ::flash.isInitialized && ::match.isInitialized){
+        if (::opciones.isInitialized && ::tarjetas.isInitialized && ::parejas.isInitialized) {
             when (contador) {
                 1 -> {
-                    val i = Intent(this@Actividades, Opciones::class.java)
-                    i.putExtra("pregunta", multiple[0])
-                    startActivity(i)
+                    val intento_actividades_opciones = Intent(this@Actividades, Opciones::class.java)
+                    intento_actividades_opciones.putExtra("pregunta", opciones[0])
+                    startActivity(intento_actividades_opciones)
                 }
                 2 -> {
-                    val i = Intent(this@Actividades, Opciones::class.java)
-                    i.putExtra("pregunta", multiple[1])
-                    startActivity(i)
+                    val intento_actividades_opciones = Intent(this@Actividades, Opciones::class.java)
+                    intento_actividades_opciones.putExtra("pregunta", opciones[1])
+                    startActivity(intento_actividades_opciones)
                 }
                 3 -> {
-                    val i = Intent(this@Actividades, Opciones::class.java)
-                    i.putExtra("pregunta", multiple[2])
-                    startActivity(i)
+                    val intento_actividades_opciones = Intent(this@Actividades, Opciones::class.java)
+                    intento_actividades_opciones.putExtra("pregunta", opciones[2])
+                    startActivity(intento_actividades_opciones)
                 }
                 4 -> {
-                    val i = Intent(this@Actividades, Flashcard::class.java)
-                    i.putExtra("pregunta", flash[0])
-                    startActivity(i)
+                    val intento_actividades_tarjetas = Intent(this@Actividades, Tarjetas::class.java)
+                    intento_actividades_tarjetas.putExtra("pregunta", tarjetas[0])
+                    startActivity(intento_actividades_tarjetas)
                 }
                 5 -> {
-                    val i = Intent(this@Actividades, Flashcard::class.java)
-                    i.putExtra("pregunta", flash[1])
-                    startActivity(i)
+                    val intento_actividades_tarjetas = Intent(this@Actividades, Tarjetas::class.java)
+                    intento_actividades_tarjetas.putExtra("pregunta", tarjetas[1])
+                    startActivity(intento_actividades_tarjetas)
                 }
                 6 -> {
-                    val i = Intent(this@Actividades, Flashcard::class.java)
-                    i.putExtra("pregunta", flash[2])
-                    startActivity(i)
+                    val intento_actividades_tarjetas = Intent(this@Actividades, Tarjetas::class.java)
+                    intento_actividades_tarjetas.putExtra("pregunta", tarjetas[2])
+                    startActivity(intento_actividades_tarjetas)
                 }
                 7 -> {
-                    val i = Intent(this@Actividades, MatchPairs::class.java)
-                    i.putExtra("pregunta", match[0])
-                    startActivity(i)
+                    val intento_actividades_parejas = Intent(this@Actividades, Parejas::class.java)
+                    intento_actividades_parejas.putExtra("pregunta", parejas[0])
+                    startActivity(intento_actividades_parejas)
                 }
                 8 -> {
-                    val i = Intent(this@Actividades, MatchPairs::class.java)
-                    i.putExtra("pregunta", match[1])
-                    startActivity(i)
+                    val intento_actividades_parejas = Intent(this@Actividades, Parejas::class.java)
+                    intento_actividades_parejas.putExtra("pregunta", parejas[1])
+                    startActivity(intento_actividades_parejas)
                 }
                 9 -> {
-                    val i = Intent(this@Actividades, MatchPairs::class.java)
-                    i.putExtra("pregunta", match[2])
-                    startActivity(i)
+                    val intento_actividades_parejas = Intent(this@Actividades, Parejas::class.java)
+                    intento_actividades_parejas.putExtra("pregunta", parejas[2])
+                    startActivity(intento_actividades_parejas)
                 }
                 else -> {
-                    val i = Intent(this@Actividades, Mapa::class.java)
-                    startActivity(i)
+                    val intento_actividades_mapa = Intent(this@Actividades, Mapa::class.java)
+                    startActivity(intento_actividades_mapa)
                     finish()
                 }
             }

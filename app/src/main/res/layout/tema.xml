@@ -8,14 +8,14 @@
         android:layout_height="match_parent">
 
         <Button
-            android:id="@+id/my_button"
+            android:id="@+id/boton_tema"
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:layout_centerInParent="true"
             android:background="@drawable/icono_estrella" />
 
         <ProgressBar
-            android:id="@+id/progreso"
+            android:id="@+id/circulo_progreso"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="125dp"
             android:layout_height="125dp"

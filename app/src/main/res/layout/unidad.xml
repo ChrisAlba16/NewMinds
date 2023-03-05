@@ -6,18 +6,16 @@
     android:background="@drawable/borde_unidad">
 
     <TextView
-        android:id="@+id/titulo"
+        android:id="@+id/titulo_unidad"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Unidad 1"
         android:textColor="#333333"
         android:textSize="24sp" />
 
     <TextView
-        android:id="@+id/subtitulo"
+        android:id="@+id/subtitulo_unidad"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Enunciados"
         android:textColor="#666666"
         android:textSize="16sp" />
 

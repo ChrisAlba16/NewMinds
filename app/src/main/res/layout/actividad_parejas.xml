@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fondo"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/fondo">
+    android:layout_height="match_parent">
 
 
     <ImageView
-        android:id="@+id/cancelar"
+        android:id="@+id/boton_regreso"
         android:layout_width="54dp"
         android:layout_height="47dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -19,9 +19,10 @@
         app:srcCompat="@drawable/icono_boton_cerrar" />
 
     <ImageView
-        android:id="@+id/duda"
+        android:id="@+id/boton_video"
         android:layout_width="54dp"
         android:layout_height="47dp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.955"
@@ -31,11 +32,11 @@
         app:srcCompat="@drawable/icono_boton_video" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/titulo_layout"
         android:layout_width="304dp"
         android:layout_height="57dp"
-        android:text="Une las parejas de simbolos"
-        android:gravity = "center"
+        android:gravity="center"
+        android:text="@string/une_parejas"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -53,21 +54,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.119"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:layout_constraintTop_toBottomOf="@+id/imagen"
         app:layout_constraintVertical_bias="0.403">
 
         <Button
-            android:id="@+id/left_one"
+            android:id="@+id/boton_izquierda_uno"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="+"
             android:textAllCaps="false" />
 
         <Button
-            android:id="@+id/left_two"
+            android:id="@+id/boton_izquierda_dos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="-"
             android:textAllCaps="false" />
 
 
@@ -82,34 +81,32 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.795"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:layout_constraintTop_toBottomOf="@+id/imagen"
         app:layout_constraintVertical_bias="0.409">
 
         <Button
-            android:id="@+id/right_one"
+            android:id="@+id/boton_derecha_uno"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Resta"
             android:textAllCaps="false" />
 
         <Button
-            android:id="@+id/right_two"
+            android:id="@+id/boton_derecha_dos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Suma"
             android:textAllCaps="false" />
 
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/imagen"
         android:layout_width="156dp"
         android:layout_height="123dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/titulo_layout"
         app:layout_constraintVertical_bias="0.033"
         app:srcCompat="@drawable/icono_mascota" />
 

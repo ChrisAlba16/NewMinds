@@ -1,81 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blue_background"
+    android:background="@color/color_fondo_azul"
     android:padding="16dp">
 
     <LinearLayout
-        android:id="@+id/toolbar"
+        android:id="@+id/seccion_uno"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/back_button"
+            android:id="@+id/boton_regreso"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/icono_boton_retroceder"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:src="@drawable/icono_boton_retroceder" />
 
         <TextView
-            android:id="@+id/layout_title"
+            android:id="@+id/titulo_layout"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Iniciar sesion"
-            android:textSize="28sp"
+            android:layout_height="match_parent"
             android:layout_marginLeft="16dp"
             android:gravity="center"
-            android:textColor="@color/white_text"/>
+            android:text="@string/iniciar_sesion"
+            android:textColor="@color/color_texto_blanco"
+            android:textSize="38sp" />
 
     </LinearLayout>
 
     <EditText
-        android:id="@+id/matricula"
+        android:id="@+id/texto_matricula"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_below="@id/toolbar"
-        android:layout_marginTop="40dp"
+        android:layout_below="@id/seccion_uno"
+        android:layout_marginTop="60dp"
         android:layout_marginBottom="-3dp"
         android:background="@drawable/fondo_texto_ingreso"
-        android:hint="Matricula"
-        android:inputType="textEmailAddress"
-        android:textColorHint="@color/grey_button"
+        android:hint="@string/hint_matricula"
+        android:inputType="phone"
+        android:textColorHint="@color/color_boton_gris"
         android:textSize="24sp" />
 
     <EditText
-        android:id="@+id/password"
+        android:id="@+id/texto_contrasena"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_below="@id/matricula"
+        android:layout_below="@id/texto_matricula"
         android:layout_marginTop="23dp"
-        android:background="@color/white_text"
-        android:hint="Contraseña"
+        android:background="@color/color_texto_blanco"
+        android:hint="@string/hint_contrasena"
         android:inputType="textPassword"
-        android:textColorHint="@color/grey_button"
         android:padding="10dp"
+        android:textColorHint="@color/color_boton_gris"
         android:textSize="24sp" />
 
     <Button
-        android:id="@+id/sign_in_button"
+        android:id="@+id/boton_iniciar_sesion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/password"
+        android:layout_below="@id/texto_contrasena"
         android:layout_marginTop="282dp"
         android:background="@drawable/fondo_boton_ingreso"
-        android:text="Iniciar sesion"
-        android:textColor="@color/white_text"
+        android:text="@string/iniciar_sesion"
+        android:textColor="@color/color_texto_blanco"
         android:textSize="19dp" />
 
     <TextView
         android:id="@+id/forgot_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/sign_in_button"
+        android:layout_below="@+id/boton_iniciar_sesion"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
-        android:text="Olvide mi contraseña"
-        android:textColor="@color/white_text"
+        android:text="@string/olvide_contrasena"
+        android:textColor="@color/color_texto_blanco"
         android:textSize="20sp"
         android:textStyle="bold" />
 </RelativeLayout>

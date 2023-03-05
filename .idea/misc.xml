@@ -8,21 +8,30 @@
         <entry key="..\:/Users/Chris/Desktop/N/NewMinds/app/src/main/res/layout/activity_lesson_list.xml" value="0.19947916666666668" />
         <entry key="..\:/Users/Chris/Desktop/N/NewMinds/app/src/main/res/layout/activity_word_task.xml" value="0.17083333333333334" />
         <entry key="..\:/Users/Chris/Desktop/N/NewMinds/app/src/main/res/menu/menu_main.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/Chris/Desktop/NewMinds/app/src/main/res/drawable/borde_progreso.xml" value="0.161" />
+        <entry key="..\:/Users/Chris/Desktop/NewMinds/app/src/main/res/drawable/borde_unidad.xml" value="0.161" />
         <entry key="..\:/Users/Chris/Desktop/NewMinds/app/src/main/res/drawable/border.xml" value="0.2265" />
         <entry key="..\:/Users/Chris/Desktop/NewMinds/app/src/main/res/drawable/button_task_continue.xml" value="0.243" />
         <entry key="..\:/Users/Chris/Desktop/NewMinds/app/src/main/res/drawable/circular_button_background.xml" value="0.2265" />
         <entry key="..\:/Users/Chris/Desktop/NewMinds/app/src/main/res/drawable/estrella.xml" value="0.2265" />
         <entry key="..\:/Users/Chris/Desktop/NewMinds/app/src/main/res/drawable/fondo_boton_borde.xml" value="0.161" />
+        <entry key="..\:/Users/Chris/Desktop/NewMinds/app/src/main/res/drawable/fondo_boton_empezar.xml" value="0.161" />
+        <entry key="..\:/Users/Chris/Desktop/NewMinds/app/src/main/res/drawable/fondo_boton_ingreso.xml" value="0.161" />
         <entry key="..\:/Users/Chris/Desktop/NewMinds/app/src/main/res/drawable/fondo_launcher.xml" value="0.161" />
+        <entry key="..\:/Users/Chris/Desktop/NewMinds/app/src/main/res/drawable/fondo_texto_ingreso.xml" value="0.161" />
         <entry key="..\:/Users/Chris/Desktop/NewMinds/app/src/main/res/drawable/frente_launcher.xml" value="0.161" />
         <entry key="..\:/Users/Chris/Desktop/NewMinds/app/src/main/res/drawable/get_started_button.xml" value="0.1" />
         <entry key="..\:/Users/Chris/Desktop/NewMinds/app/src/main/res/drawable/gray_bottom_border.xml" value="0.1" />
+        <entry key="..\:/Users/Chris/Desktop/NewMinds/app/src/main/res/drawable/icono_estrella.xml" value="0.161" />
         <entry key="..\:/Users/Chris/Desktop/NewMinds/app/src/main/res/drawable/progress.xml" value="0.2255" />
         <entry key="..\:/Users/Chris/Desktop/NewMinds/app/src/main/res/drawable/rounded_button.xml" value="0.2115" />
         <entry key="..\:/Users/Chris/Desktop/NewMinds/app/src/main/res/drawable/unidad.xml" value="0.2265" />
-        <entry key="..\:/Users/Chris/Desktop/NewMinds/app/src/main/res/layout/actividad_bienvenida.xml" value="0.1" />
-        <entry key="..\:/Users/Chris/Desktop/NewMinds/app/src/main/res/layout/actividad_login.xml" value="0.11354166666666667" />
+        <entry key="..\:/Users/Chris/Desktop/NewMinds/app/src/main/res/layout/actividad_bienvenida.xml" value="0.2" />
+        <entry key="..\:/Users/Chris/Desktop/NewMinds/app/src/main/res/layout/actividad_login.xml" value="0.16799999999999998" />
         <entry key="..\:/Users/Chris/Desktop/NewMinds/app/src/main/res/layout/actividad_mapa.xml" value="0.11354166666666667" />
+        <entry key="..\:/Users/Chris/Desktop/NewMinds/app/src/main/res/layout/actividad_opciones.xml" value="0.1359375" />
+        <entry key="..\:/Users/Chris/Desktop/NewMinds/app/src/main/res/layout/actividad_parejas.xml" value="0.18854166666666666" />
+        <entry key="..\:/Users/Chris/Desktop/NewMinds/app/src/main/res/layout/actividad_tarjetas.xml" value="0.23854166666666668" />
         <entry key="..\:/Users/Chris/Desktop/NewMinds/app/src/main/res/layout/activity_flashcards.xml" value="0.253125" />
         <entry key="..\:/Users/Chris/Desktop/NewMinds/app/src/main/res/layout/activity_lesson_completed.xml" value="0.176" />
         <entry key="..\:/Users/Chris/Desktop/NewMinds/app/src/main/res/layout/activity_lesson_list.xml" value="0.1" />

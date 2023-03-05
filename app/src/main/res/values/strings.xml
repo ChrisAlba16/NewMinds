@@ -1,5 +1,11 @@
 <resources>
-    <string name="app_name">New Minds</string>
-
-    <!-- Login/Register Screen Toast Strings -->
+    <string name="nombre_app">New Minds</string>
+    <string name="descripcion_app_uno">Desarrollando Habilidades Especiales"</string>
+    <string name="descripcion_app_dos">Para Personas Especiales</string>
+    <string name="boton_empecemos">Empecemos</string>
+    <string name="iniciar_sesion">Iniciar Sesion</string>
+    <string name="hint_matricula">Matricula</string>
+    <string name="hint_contrasena">Contraseña</string>
+    <string name="olvide_contrasena">Olvide mi contraseña</string>
+    <string name="une_parejas">Une las parejas</string>
 </resources>

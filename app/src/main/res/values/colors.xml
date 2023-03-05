@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="color_primario">#3F51B5</color>
+    <color name="color_primario_oscuro">#303F9F</color>
 
-    <color name="grey_button">#e1e1e1</color>
+    <color name="color_boton_gris">#e1e1e1</color>
 
-    <color name="blue_pair">#00c2ed</color>
+    <color name="color_azul">#00c2ed</color>
 
-    <color name="white_text">#fff</color>
+    <color name="color_texto_blanco">#ffffff</color>
 
-    <color name="blue_background">#00abe4</color>
-    <color name="default_light_grey_bg">#f5f5f5</color>
+    <color name="color_fondo_azul">#00abe4</color>
+    <color name="color_fondo_gris">#f5f5f5</color>
 
 </resources>
