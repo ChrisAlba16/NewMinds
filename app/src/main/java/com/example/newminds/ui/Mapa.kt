@@ -17,7 +17,23 @@ import kotlinx.coroutines.launch
 class Mapa : AppCompatActivity() {
     private lateinit var binding: ActividadMapaBinding
     private lateinit var mapa: MutableList<Mapa>
-
+/*
+    onCreate()
+    Entradas: La interfaz desplegada, la lista de temas
+    Salidas: Dibujar la interfaz con la lista de temas
+    Valor de retorno: Ninguno
+    Función: Recupera de la base de datos una lista de temas y dibuja la interfaz
+    Variables: 
+        binding: Una interfaz gráfica
+        mapa: Una lista de temas para iniciar un cuestionario
+        valor_anterior: Una cadena que contiene el nombre del último tema recuperado de la base de datos
+        inflar_mapa: Un inflador de interfaz gráfica
+        segundo_binding: El último elemento agregado a la interfaz gráfica
+        Bundle: Un estado previo guardado (si existe)
+    Fecha: 05/03/2023
+    Autor: Gerardo Rodríguez
+    Rutinas anexas: setContentView(), inflate(), setOnClickListener(), startActivity(), putExtra(), finish(), await()
+ */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

@@ -15,9 +15,33 @@ import com.example.newminds.databinding.ActividadOpcionesBinding
 import com.example.newminds.utils.DatosOpciones
 
 
+
+
+
 class Opciones : AppCompatActivity() {
     private lateinit var binding: ActividadOpcionesBinding
     private lateinit var pregunta: DatosOpciones
+
+    /*
+    onCreate()
+    Entradas: Ingresan los valores con la información sobre la pregunta a responder como extras al invocar la actividad
+    Salidas: Ninguna
+    Valor de retorno: Ninguno
+    Función: Inicializa la interfaz descomponiendo los datos ingresados, estableciendo las escuchas para los botones y las imágenes
+    Variables: 
+        binding: vincula las vistas y elementos de la interfaz gráfica al codigo.
+        pregunta: Informacion de la pregunta
+        enlace_video: Link del video de la pregunta
+        intento_video: Abre una actividad donde se muestra el enlace del video.
+        repuesta: Respuesta correcta de la pregunta
+        intento_opciones_mapa: Abre una actividad donde se muestra el mapa
+    Fecha: 05/03/2023
+    Autor: Isaac Mauricio Cambranis Acosta
+    Rutinas anexas: Integer.parseInt(), finish(), startActivity(), Intent(), setOnClickListener(), Uri.parse(), revisar(), setContentView(), inflate()
+
+ */
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActividadOpcionesBinding.inflate(layoutInflater)
@@ -63,6 +87,21 @@ class Opciones : AppCompatActivity() {
         }
     }
 
+
+    /*
+    revisar()
+    Entradas: dos valores enteros
+    Salidas: Identificar si la opcion esocogida es la correcta
+    Valor de retorno: Ninguna
+    Función: compara los dos valores enteros recibidos para comprobar si la opcion seleccionada es la respuesta correcta
+    Variables: 
+        opcion: opcion seleccionada  
+        respuesta: respuesta correcta de la pregunta 
+    Fecha: 05/03/2023
+    Autor: Isaac Mauricio Cambranis Acosta
+    Rutinas anexas: respuestaCorrecta(),  repuestaEquivocada()
+ */
+
     private fun revisar(opcion: Int, respuesta: Int) {
         if (opcion == respuesta)
             repuestaCorrecta()
@@ -70,6 +109,21 @@ class Opciones : AppCompatActivity() {
             repuestaEquivocada()
 
     }
+
+    /*
+    repuestaCorrecta()
+    Entradas: Interfaz grafica desplegada
+    Salidas: respuesta visual cuando se proporciona una respuesta correcta a la pregunta
+    Valor de retorno: Ninguna
+    Función: muestra un mensaje y cambia el fondo de la actividad cuando se responde correctamente la pregunta y finaliza la actividad
+    Variables: 
+        colores: Determina el conjunto de colores que se utilizaran
+        transicion: Cambia el color del fondo de la actividad
+        handler: Temporizador que permite retrasar el cierre de la actividad despues de que se realice la animacion
+    Fecha: 05/03/2023
+    Autor: Isaac Mauricio Cambranis Acosta
+    Rutinas anexas: arrayOf(), parseColor(), makeText(), startTransition(), Handler(), postDelayed(), finish(), 
+ */
 
     private fun repuestaCorrecta() {
         val colores =
@@ -83,6 +137,21 @@ class Opciones : AppCompatActivity() {
             finish()
         }, 1000)
     }
+
+/*
+    repuestaEquivocada()
+    Entradas: Interfaz grafica desplegada
+    Salidas: respuesta visual cuando se proporciona una respuesta equivocada a la pregunta
+    Valor de retorno: Ninguna
+    Función: muestra un mensaje y cambia el fondo de la actividad cuando se responde incorrectamente la pregunta
+    Variables: 
+        colores: Determina el conjunto de colores que se utilizaran
+        transicion: Cambia el color del fondo de la actividad
+        handler: Temporizador que permite retrasar el cierre de la actividad despues de que se realice la animacion
+    Fecha: 05/03/2023
+    Autor: Isaac Mauricio Cambranis Acosta
+    Rutinas anexas: arrayOf(), parseColor(), makeText(), startTransition() 
+ */
 
     private fun repuestaEquivocada() {
         val colores =

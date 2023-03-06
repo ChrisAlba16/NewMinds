@@ -22,7 +22,28 @@ class Parejas : AppCompatActivity() {
     private var texto_boton_dos = ""
     private var estado_boton_uno = 0
     private var estado_boton_dos = 0
-
+/*
+    onCreate
+    Entradas: Ingresan los valores con la información sobre la pregunta a responder como extras al invocar la actividad
+    Salidas: Ninguna
+    Valor de retorno: Ninguna
+    Función: Inicializa la interfaz descomponiendo los datos ingresados, estableciendo las escuchas para los botones y las imágenes
+    Variables: 
+        binding: Una interfaz gráfica
+        pregunta: La información de la pregunta recibida desde la actividad anterior
+        contador: Un contador del número de parejas que se han formado correctamente
+        texto_boton_uno: El texto del primer botón presionado
+        texto_boton_dos: El texto del segundo botón presionado
+        estado_boton_uno: El primer botón presionado
+        estado_boton_dos: El segundo botón presionado
+        parejas: Una matriz de las posibles parejas que solucionan la pregunta
+        btn1: El primer botón presionado
+        btn2: El segundo botón presionado
+        Bundle: Un estado previo guardado (si existe) 
+    Fecha: 05/03/2023
+    Autor: Gerardo Rodríguez
+    Rutinas anexas: finish(), startActivity(), setOnClickListener(), Uri.parse(), arrayOf(), revisar()
+ */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActividadParejasBinding.inflate(layoutInflater)
@@ -144,7 +165,23 @@ class Parejas : AppCompatActivity() {
             }
         }
     }
-
+/*
+    revisar()
+    Entradas: Dos cadenas de texto y una matriz de cadenas de texto
+    Salidas: Saber si las dos cadenas ingresadas forman una pareja
+    Valor de retorno: Booleano
+    Función: Compara las dos cadenas ingresadas para saber si en la matriz de parejas existe aquel par y actualiza el estado del contador
+    Variables: 
+        correcto: Evalúa si se ha formado correctamente una pareja
+        a: La cadena del primer botón presionado
+        b: La cadena del segundo botón presionado
+        lista: La matriz de parejas que solucionan el problema
+        item: Una pareja de la matriz de posibles soluciones
+        contador: El contador de parejas que se han formado correctamente
+    Fecha: 05/03/2023
+    Autor: Gerardo Rodríguez
+    Rutinas anexas: respuestaCorrecta(), respuestaEquivocada()
+ */
     private fun revisar(a: String, b: String, lista: Array<Array<String>>): Boolean {
         var correcto = false
         for (item in lista) {
@@ -166,7 +203,20 @@ class Parejas : AppCompatActivity() {
         }
         return true
     }
-
+/*
+    respuestaCorrecta()
+    Entradas: La interfaz gráfica desplegada
+    Salidas: Cambio de color, animaciones y mensaje
+    Valor de retorno: Ninguno
+    Función: Ejecuta las animaciones y el cambio de color en caso de haber completado el ejercicio correctamente
+    Variables: 
+        colores: Un arreglo de colores para la transición
+        transicion: Una animación de transición de colores
+        handler: un temporizador para ejecutar un método tras cierto tiempo
+    Fecha: 05/03/2023
+    Autor: Gerardo Rodríguez
+    Rutinas anexas: parseColor(), makeText(), startTransition(), finish(), postDelayed()
+ */
     private fun repuestaCorrecta() {
         val colores =
             arrayOf(ColorDrawable(Color.parseColor("#007f00")), ColorDrawable(Color.WHITE))
@@ -179,7 +229,20 @@ class Parejas : AppCompatActivity() {
             finish()
         }, 1000)
     }
-
+/*
+    respuestaEquivocada()
+    Entradas: La interfaz gráfica desplegada
+    Salidas: Cambio de color, animaciones y mensaje
+    Valor de retorno: Ninguno
+    Función: Ejecuta las animaciones y el cambio de color en caso de haber completado el ejercicio de manera equivocada
+    Variables: 
+        colores: Un arreglo de colores para la transición
+        transicion: Una animación de transición de colores
+        handler: un temporizador para ejecutar un método tras cierto tiempo
+    Fecha: 05/03/2023
+    Autor: Gerardo Rodríguez
+    Rutinas anexas: parseColor(), makeText(), startTransition()
+ */
     private fun repuestaEquivocada() {
         val colores =
             arrayOf(ColorDrawable(Color.parseColor("#7f0000")), ColorDrawable(Color.WHITE))

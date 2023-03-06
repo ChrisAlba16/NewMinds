@@ -10,6 +10,28 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
+/*
+    onCreate
+    Entradas: dos cadenas de texto, matricula y contrasena
+    Salidas: Obtener acceso para poder pasar a otra seccion de la aplicacion 
+    Valor de retorno: Ninguno
+    Función: La clase "Login", se extiende de la clase AppCompatActivity. 
+             Podemos observar que dentro del metodo Oncreate, se agregaron dos escuchas
+             para los botones de inicio y de regreso.
+             El boton de inicio de sesion intenta iniciar sesion en la 
+             aplicacion mediante la funcion requests.login
+             Si todo es correcto pasamos a la actividad Mapa.
+
+    Variables: binding: Interfaz grafica
+               matricula: variable para guardar la matricula y poder usarlo en los otros apartados
+               contrasena: variable para guardar la contrasena y poder usarlo en los otros apartados
+               intento_login_mapa: Variable para guardar la actividad siguiente
+               intento_login_bienvenida: Variable para cargar la actividad en startActivity
+
+    Fecha: 05-03-23
+    Autor: Leonardo del Jesus Salazar Chuc
+    Rutinas anexas: AppCompatActivity(), startActivity(), Intent(), finish()
+ */
 
 class Login : AppCompatActivity() {
     private lateinit var binding: ActividadLoginBinding
