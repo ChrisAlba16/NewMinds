@@ -29,6 +29,9 @@ class Login : AppCompatActivity() {
                     val repuesta_request = async { Requests.login(matricula, contrasena) }
                     if (repuesta_request.await().size == 1) {
                         val intento_login_mapa = Intent(this@Login, Mapa::class.java)
+                        val idMateria = async { Requests.estudia(matricula) }.await()
+                        intento_login_mapa.putExtra("idEstudiante", matricula)
+                        intento_login_mapa.putExtra("idMateria", idMateria)
                         startActivity(intento_login_mapa)
                         finish()
                     }

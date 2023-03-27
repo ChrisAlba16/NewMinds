@@ -14,14 +14,22 @@ class Actividades() : AppCompatActivity() {
     private lateinit var parejas: MutableList<datosParejas>
     private lateinit var opciones: MutableList<DatosOpciones>
     private lateinit var tarjetas: MutableList<DatosTarjetas>
+    var id_materia: Int = 0
+    var id_estudiante: Int = 0
+    var id_tema: Int = 0
+    var id_actividad: Int = 0
 
     var contador = 1
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        id_estudiante = intent.getIntExtra("idEstudiante", 1)
+        id_materia = intent.getIntExtra("idMateria", 1)
+        id_tema = intent.getIntExtra("idTema", 1)
+        id_actividad = intent.getIntExtra("idActividad", 1)
 
         GlobalScope.launch(Dispatchers.IO) {
             async {
-                opciones = Requests.multipleChoice(1, 1)
+                opciones = Requests.multipleChoice(id_tema, id_actividad)
             }.await()
 
             val intento_actividades_opciones = Intent(this@Actividades, Opciones::class.java)
@@ -29,8 +37,8 @@ class Actividades() : AppCompatActivity() {
             startActivity(intento_actividades_opciones)
 
             async {
-                parejas = Requests.pairs(1, 1)
-                tarjetas = Requests.flashcards(1, 1)
+                parejas = Requests.pairs(id_tema, id_actividad)
+                tarjetas = Requests.flashcards(id_tema, id_actividad)
             }.await()
             contador += 1
         }
@@ -88,6 +96,9 @@ class Actividades() : AppCompatActivity() {
                 else -> {
                     val intento_actividades_mapa = Intent(this@Actividades, Mapa::class.java)
                     startActivity(intento_actividades_mapa)
+                    GlobalScope.launch(Dispatchers.IO) {
+                        async { Requests.progreso(id_estudiante, id_materia, id_tema, id_actividad)}.await()
+                    }
                     finish()
                 }
             }

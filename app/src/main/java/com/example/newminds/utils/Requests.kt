@@ -11,7 +11,7 @@ import java.sql.ResultSet
 
 data class Usuario(val id: Int, val nombre: String, val contrasena: String)
 data class Mapa(val nombre_unidad: String, val nombre_tema: String)
-data class Progreso(val id_tema: Int, val numero_actividad: Int)
+data class MapaProgreso(val id_unidad: Int, val id_tema: Int, val numero_actividad: Int)
 
 @Parcelize
 data class DatosOpciones(
@@ -294,12 +294,12 @@ object Requests {
         return pares
     }
 
-    fun mapa(id_materia: Int): MutableList<Mapa> {
+    fun mapa(): MutableList<Mapa> {
         val mapas = mutableListOf<Mapa>()
 
         try {
             DriverManager.getConnection(url, user, password).use { conexion ->
-                val sql = "CALL mapa($id_materia);"
+                val sql = "CALL mapa();"
                 val sentencia: PreparedStatement = conexion.prepareStatement(sql)
                 val resultado: ResultSet = sentencia.executeQuery()
                 while (resultado.next()) {
@@ -314,22 +314,88 @@ object Requests {
         return mapas
     }
 
-    fun progreso(id_estudiante: Int, id_materia: Int): Progreso {
-        lateinit var progreso: Progreso
+    fun mapa_progreso(id_estudiante: Int, id_materia: Int): MapaProgreso {
+        lateinit var progreso: MapaProgreso
         try {
             DriverManager.getConnection(url, user, password).use { conexion ->
-                val sql = "CALL progreso_estudiante($id_estudiante,$id_materia);"
+                val sql = "CALL mapa_progreso($id_estudiante,$id_materia);"
                 val sentencia: PreparedStatement = conexion.prepareStatement(sql)
                 val resultado: ResultSet = sentencia.executeQuery()
                 while (resultado.next()) {
+                    val id_unidad = resultado.getInt("id_unidad")
                     val id_tema = resultado.getInt("id_tema")
                     val numero_actividad = resultado.getInt("numero_actividad")
-                    progreso = Progreso(id_tema, numero_actividad)
+                    progreso = MapaProgreso(id_unidad, id_tema, numero_actividad)
                 }
             }
         } catch (e: Exception) {
             Log.e("Conexion", "Error al leer la base de datos", e)
         }
         return progreso
+    }
+
+    fun estudia(id_estudiante: Int): Int {
+        var id_materia: Int = 0
+        try {
+            DriverManager.getConnection(url, user, password).use { conexion ->
+                val sql = "CALL estudia($id_estudiante);"
+                val sentencia: PreparedStatement = conexion.prepareStatement(sql)
+                val resultado: ResultSet = sentencia.executeQuery()
+                while (resultado.next()) {
+                    id_materia = resultado.getInt("id_materia")
+                    return id_materia
+                }
+            }
+        } catch (e: Exception) {
+            Log.e("Conexion", "Error al leer la base de datos", e)
+        }
+        return id_materia
+    }
+
+    fun temas_materia(id_materia: Int): MutableList<Int> {
+        var temas: MutableList<Int> = arrayListOf()
+        try {
+            DriverManager.getConnection(url, user, password).use { conexion ->
+                val sql = "CALL temas($id_materia);"
+                val sentencia: PreparedStatement = conexion.prepareStatement(sql)
+                val resultado: ResultSet = sentencia.executeQuery()
+                while (resultado.next()) {
+                    val tema = resultado.getInt("id_tema")
+                    temas.add(tema)
+                }
+            }
+        } catch (e: Exception) {
+            Log.e("Conexion", "Error al leer la base de datos", e)
+        }
+        return temas
+    }
+
+    fun progreso(id_estudiante: Int, id_materia: Int, id_tema: Int, numero_actividad: Int) {
+        try {
+            DriverManager.getConnection(url, user, password).use { conexion ->
+                val sql = "CALL progreso($id_estudiante, $id_materia, $id_tema, $numero_actividad);"
+                val sentencia: PreparedStatement = conexion.prepareStatement(sql)
+                val resultado: ResultSet = sentencia.executeQuery()
+            }
+        } catch (e: Exception) {
+            Log.e("Conexion", "Error al leer la base de datos", e)
+        }
+    }
+
+    fun materias(id_materia: Int): String {
+        var nombre: String = " "
+        try {
+            DriverManager.getConnection(url, user, password).use { conexion ->
+                val sql = "CALL materias($id_materia);"
+                val sentencia: PreparedStatement = conexion.prepareStatement(sql)
+                val resultado: ResultSet = sentencia.executeQuery()
+                while (resultado.next()) {
+                    nombre = resultado.getString("nombre")
+                }
+            }
+        } catch (e: Exception) {
+            Log.e("Conexion", "Error al leer la base de datos", e)
+        }
+        return nombre
     }
 }

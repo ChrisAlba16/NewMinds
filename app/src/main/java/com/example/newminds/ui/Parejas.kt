@@ -156,11 +156,6 @@ class Parejas : AppCompatActivity() {
             return false
         }
         contador += 1
-        Toast.makeText(
-            binding.root.context,
-            "Bien, sólo te falta una más",
-            Toast.LENGTH_SHORT
-        ).show()
         if (contador >= 2) {
             repuestaCorrecta()
         }
